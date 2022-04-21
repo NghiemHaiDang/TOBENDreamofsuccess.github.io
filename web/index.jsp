@@ -1,30 +1,34 @@
+<%-- 
+    Document   : index
+    Created on : Apr 21, 2022, 10:05:50 PM
+    Author     : Admin
+--%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Category"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>TOBEN - Dream of success</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+           <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
         <!-- bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
         <link href="themes/css/bootstrappage.css" rel="stylesheet"/>
 
-        <!-- global styles -->
+      
         <link href="themes/css/flexslider.css" rel="stylesheet"/>
         <link href="themes/css/main.css" rel="stylesheet"/>
 
-        <!-- scripts -->
+      
         <script src="themes/js/jquery-1.7.2.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>				
         <script src="themes/js/superfish.js"></script>	
         <script src="themes/js/jquery.scrolltotop.js"></script>
+        <%List<Category> listCategory = (List<Category>)request.getAttribute("listCategory");%>
     </head>
     <body>
         <div id="top-bar" class="container">
@@ -54,11 +58,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <ul>
                             <li><a href="./products.html">Tuyển dụng</a></li>																
                             <li><a href="./products.html">Tính chất công việc</a>`
-                                <ul>									
-                                    <li><a href="./products.html">Online</a></li>
-                                    <li><a href="./products.html">Toàn thời gian</a></li>
-                                    <li><a href="./products.html">Bán thời gian</a></li>
-                                    <li><a href="./products.html">Thực tập</a></li>
+                                <ul>
+                                    <% for (Category c : listCategory) {
+                                    %>
+
+                                    <li><a href="#"><%=c.getCt_name()%></a></li>
+
+                                    <%}%>
                                 </ul>
                             </li>							
                             <li><a href="./products.html">Về chúng tôi</a></li>
