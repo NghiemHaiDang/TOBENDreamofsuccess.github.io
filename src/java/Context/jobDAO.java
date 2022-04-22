@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,6 +37,32 @@ public class jobDAO extends BaseDAO<Job> {
         try {
             String sql = "select *from job";
             PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Job job = new Job();
+                job.setId(rs.getInt("id"));
+                job.setJob_name(rs.getString("job_name"));
+                job.setDescription(rs.getString("description"));
+                job.setSalary(rs.getString("salary"));
+                job.setCategoryid(rs.getInt("categoryid"));
+                job.setCompanyid(rs.getInt("companyid"));
+                job.setRecruitmentdate(rs.getDate("recruitmentdate"));
+                job.setExpirationdate(rs.getDate("expirationdate"));
+                job.setImageurl(rs.getString("imageurl"));
+                jobs.add(job);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(categoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jobs;
+    }
+
+    public List<Job> getJobBycategoryId(int categoryId) {
+        ArrayList<Job> jobs = new ArrayList<>();
+        try {
+            String sql = "select *from job where categoryid = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, categoryId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Job job = new Job();

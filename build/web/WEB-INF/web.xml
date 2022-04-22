@@ -8,6 +8,10 @@
         <servlet-name>productjobServlet</servlet-name>
         <servlet-class>controller.productjobServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>filterCategoryController</servlet-name>
+        <servlet-class>controller.filterCategoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>productjobServlet</servlet-name>
         <url-pattern>/productjobServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>filterCategoryController</servlet-name>
+        <url-pattern>/filterCategoryController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

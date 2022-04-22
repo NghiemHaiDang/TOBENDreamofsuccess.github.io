@@ -73,80 +73,14 @@
                         <ul class="thumbnails listing-products">
                             <c:forEach items="${listJob}" var="job">
                             <li class="span3">
-                                <div class="product-box">
+                                <div style="height: 200px" class="product-box border-job">
                                     <span class="sale_tag"></span>												
                                     <a href="#"><img alt="" src="${job.imageurl}"></a><br/>
                                     <a href="#" class="title">${job.job_name}</a><br/>
-                                    <a href="#" class="category">Phasellus consequat</a>
+                                    <a href="#" class="category">Expirationdate: ${job.expirationdate}</a>
                                     <p class="price">${job.salary}</p>
                                 </div>
                             </li>       
-<!--                            <li class="span3">
-                                <div class="product-box">												
-                                    <a href="product_detail.html"><img alt="" src="themes/images/ladies/8.jpg"></a><br/>
-                                    <a href="product_detail.html" class="title">Praesent tempor sem</a><br/>
-                                    <a href="#" class="category">Erat gravida</a>
-                                    <p class="price">$28</p>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="product-box">
-                                    <span class="sale_tag"></span>												
-                                    <a href="product_detail.html"><img alt="" src="Jobpictures/job1.png"></a><br/>
-                                    <a href="product_detail.html" class="title">Wuam ultrices rutrum</a><br/>
-                                    <a href="#" class="category">Suspendisse aliquet</a>
-                                    <p class="price">$341</p>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="product-box">												
-                                    <span class="sale_tag"></span>
-                                    <a href="product_detail.html"><img alt="" src="themes/images/ladies/6.jpg"></a><br/>
-                                    <a href="product_detail.html" class="title">Praesent tempor sem sodales</a><br/>
-                                    <a href="#" class="category">Nam imperdiet</a>
-                                    <p class="price">$49</p>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="product-box">                                        												
-                                    <a href="product_detail.html"><img alt="" src="themes/images/ladies/1.jpg"></a><br/>
-                                    <a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-                                    <a href="#" class="category">Congue diam congue</a>
-                                    <p class="price">$35</p>
-                                </div>
-                            </li>       
-                            <li class="span3">
-                                <div class="product-box">												
-                                    <a href="product_detail.html"><img alt="" src="themes/images/ladies/2.jpg"></a><br/>
-                                    <a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-                                    <a href="#" class="category">Gravida placerat</a>
-                                    <p class="price">$61</p>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="product-box">												
-                                    <a href="product_detail.html"><img alt="" src="themes/images/ladies/3.jpg"></a><br/>
-                                    <a href="product_detail.html" class="title">Quam ultrices rutrum</a><br/>
-                                    <a href="#" class="category">Orci et nisl iaculis</a>
-                                    <p class="price">$233</p>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="product-box">												
-                                    <a href="product_detail.html"><img alt="" src="themes/images/ladies/4.jpg"></a><br/>
-                                    <a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-                                    <a href="#" class="category">Urna nec lectus mollis</a>
-                                    <p class="price">$134</p>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="product-box">												
-                                    <a href="product_detail.html"><img alt="" src="themes/images/ladies/5.jpg"></a><br/>
-                                    <a href="product_detail.html" class="title">Luctus quam ultrices</a><br/>
-                                    <a href="#" class="category">Suspendisse aliquet</a>
-                                    <p class="price">$261</p>
-                                </div>
-                            </li>-->
                             </c:forEach>
                         </ul>								
                         <hr>
@@ -166,7 +100,7 @@
                             <ul class="nav nav-list">
                                 <li class="nav-header">Tính chất công việc</li>
                                     <c:forEach items="${listCategory}" var="ct">
-                                    <li><a href="products.html">${ct.ct_name}</a></li>
+                                    <li><a href="filterCategoryController?categoryId=${ct.id}">${ct.ct_name}</a></li>
                                     </c:forEach>
                             </ul>
                             <br/>
