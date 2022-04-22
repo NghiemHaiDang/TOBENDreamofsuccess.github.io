@@ -4,13 +4,24 @@
         <servlet-name>homeServlet</servlet-name>
         <servlet-class>controller.homeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>productjobServlet</servlet-name>
+        <servlet-class>controller.productjobServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>productjobServlet</servlet-name>
+        <url-pattern>/productjobServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>homeServlet</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -4,14 +4,12 @@
  */
 package Context;
 
-import Context.BaseDAO;
 import Model.Category;
 import Model.Company;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,34 +17,38 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class categoryDAO extends BaseDAO<Category> {
+public class companyDAO extends BaseDAO<Company> {
     
     @Override
-    public ArrayList<Category> getAllCategory() {
-        ArrayList<Category> categorys = new ArrayList<>();
+    public ArrayList<Company> getAllCategory() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public ArrayList<Company> getAllCompany() {
+        ArrayList<Company> companys = new ArrayList<>();
         try {
-            String sql = "select *from category";
+            String sql = "select *from company";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                Category c = new Category();
+                Company c = new Company();
                 c.setId(rs.getInt("id"));
-                c.setCt_name(rs.getString("ct_name"));
-                categorys.add(c);
+                c.setCompany_name(rs.getString("company_name"));
+                c.setAddress(rs.getString("address"));
+                c.setCeo(rs.getString("ceo"));
+                c.setPhonecompany(rs.getString("phonecompany"));
+                c.setImageurlcompany(rs.getString("imageurlcompany"));
+                companys.add(c);
             }
         } catch (SQLException ex) {
             Logger.getLogger(categoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return categorys;
+        return companys;
     }
 
     @Override
-    public ArrayList<Category> getAllCompany() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<Category> getAllJob() {
+    public ArrayList<Company> getAllJob() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

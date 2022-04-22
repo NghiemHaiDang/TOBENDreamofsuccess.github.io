@@ -31,6 +31,7 @@
         <%List<Category> listCategory = (List<Category>)request.getAttribute("listCategory");%>
     </head>
     <body>
+        <img src="Jobpictures/company1.png" alt="">
         <div id="top-bar" class="container">
             <div class="row">
                 <div class="span4">
@@ -56,7 +57,7 @@
                     <a href="index.html" class="local logo pull-left">TOBEN - Dream Of Success </a>
                     <nav id="menu" class="pull-right">
                         <ul>
-                            <li><a href="./products.html">Tuyển dụng</a></li>																
+                            <li><a href="productjobServlet">Tuyển dụng</a></li>																
                             <li><a href="./products.html">Tính chất công việc</a>`
                                 <ul>
                                     <% for (Category c : listCategory) {
