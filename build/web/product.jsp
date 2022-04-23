@@ -87,10 +87,10 @@
                         <div class="pagination pagination-small pagination-centered">
                             <ul>
                                 <li><a href="#">Prev</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
+                                <li><a href="productjobServlet?page=1">1</a></li>
+                                <li><a href="productjobServlet?page=2">2</a></li>
+                                <li><a href="productjobServlet?page=3">3</a></li>
+                                <li><a href="productjobServlet?page=4">4</a></li>
                                 <li><a href="#">Next</a></li>
                             </ul>
                         </div>

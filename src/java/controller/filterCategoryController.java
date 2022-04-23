@@ -4,7 +4,9 @@
  */
 package controller;
 
+import Context.categoryDAO;
 import Context.jobDAO;
+import Model.Category;
 import Model.Job;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,8 +37,11 @@ public class filterCategoryController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         jobDAO jobdao = new jobDAO();
+        categoryDAO ctDao = new categoryDAO();
+        ArrayList<Category> listCategory = ctDao.getAllCategory();
         List<Job> listJob = jobdao.getJobBycategoryId(categoryId);
         request.setAttribute("listJob", listJob);
+        request.setAttribute("listCategory", listCategory);
         request.getRequestDispatcher("product.jsp").forward(request, response);  
     }
 

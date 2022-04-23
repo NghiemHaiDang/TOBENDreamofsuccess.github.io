@@ -44,7 +44,13 @@ public class productjobServlet extends HttpServlet {
         ArrayList<Job> listJob = jobDao.getAllJob();
         request.setAttribute("listCategory", listCategory);
         request.setAttribute("listCompany", listCompany);
-        request.setAttribute("listJob", listJob);
+        int page = 1;
+        String pageStr = request.getParameter("page");
+        if (pageStr != null) {
+            page = Integer.parseInt(pageStr);
+        }
+        final int PAGE_SIZE = 6;
+        request.setAttribute("listJob", listJob.subList((page - 1) * PAGE_SIZE, page * PAGE_SIZE));
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 
