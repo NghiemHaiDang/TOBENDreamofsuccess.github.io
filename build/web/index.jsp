@@ -3,6 +3,7 @@
     Created on : Apr 21, 2022, 10:05:50 PM
     Author     : Admin
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Category"%>
@@ -12,18 +13,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-           <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
-        <!-- bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-
         <link href="themes/css/bootstrappage.css" rel="stylesheet"/>
-
-      
         <link href="themes/css/flexslider.css" rel="stylesheet"/>
         <link href="themes/css/main.css" rel="stylesheet"/>
-
-      
         <script src="themes/js/jquery-1.7.2.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>				
         <script src="themes/js/superfish.js"></script>	
@@ -31,7 +25,6 @@
         <%List<Category> listCategory = (List<Category>)request.getAttribute("listCategory");%>
     </head>
     <body>
-        <img src="Jobpictures/company1.png" alt="">
         <div id="top-bar" class="container">
             <div class="row">
                 <div class="span4">
@@ -79,10 +72,10 @@
                 <div class="flexslider">
                     <ul class="slides">
                         <li>
-                            <img class="background-slide" src="./Jobpictures/slide1.png" alt="" />
+                            <img style="height: 450px" class="background-slide" src="./Jobpictures/slide1.png" alt="" />
                         </li>
                         <li>
-                            <img class="background-slide" src="./Jobpictures/slide2.jpg" alt="" />
+                            <img style="height: 450px" class="background-slide" src="./Jobpictures/slide2.jpg" alt="" />
                             <div class="intro">
                                 <h1>Mid season sale</h1>
                                 <p><span>Up to 50% Off</span></p>
@@ -93,8 +86,8 @@
                 </div>			
             </section>
             <section class="header_text">
-                We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates. 
-                <br/>Don't miss to use our cheap abd best bootstrap templates.
+                Càng khó khăn bao nhiêu thì thành quả bạn nhận được càng to lớn bấy nhiêu. Hãy coi những khó khăn là một cơ hội đi tới thành công lớn lao
+                <br/>TOBEN - Dream Of Success khám phá bản thân, tiến đến tương lai.
             </section>
             <section class="main-content">
                 <div class="row">
@@ -308,26 +301,13 @@
                 </div>
             </section>
             <section class="our_client">
-                <h4 class="title"><span class="text">Manufactures</span></h4>
-                <div class="row">					
-                    <div class="span2">
-                        <a href="#"><img alt="" src="themes/images/clients/14.png"></a>
-                    </div>
-                    <div class="span2">
-                        <a href="#"><img alt="" src="themes/images/clients/35.png"></a>
-                    </div>
-                    <div class="span2">
-                        <a href="#"><img alt="" src="themes/images/clients/1.png"></a>
-                    </div>
-                    <div class="span2">
-                        <a href="#"><img alt="" src="themes/images/clients/2.png"></a>
-                    </div>
-                    <div class="span2">
-                        <a href="#"><img alt="" src="themes/images/clients/3.png"></a>
-                    </div>
-                    <div class="span2">
-                        <a href="#"><img alt="" src="themes/images/clients/4.png"></a>
-                    </div>
+                <h4 class="title"><span class="text">Công ty nổi bật</span></h4>
+                <div class="row">
+                    <c:forEach items="${listCompany}" var="cp">
+                        <div class="span2">
+                            <a href="#"><img style="height: 100px;" alt="" src="${cp.imageurlcompany}"></a>
+                        </div>
+                    </c:forEach>
                 </div>
             </section>
             <section id="footer-bar">

@@ -4,26 +4,18 @@
  */
 package controller;
 
-import Context.categoryDAO;
-import Context.companyDAO;
-import Context.jobDAO;
-import Model.Category;
-import Model.Company;
-import Model.Job;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class homeServlet extends HttpServlet {
+public class loginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,14 +29,8 @@ public class homeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        categoryDAO ctDao = new categoryDAO();
-        companyDAO cpDao = new companyDAO();
-        ArrayList<Category> listCategory = ctDao.getAllCategory();
-        ArrayList<Company> listCompany = cpDao.getAllCompany();
-        request.setAttribute("listCategory", listCategory);
-        request.setAttribute("listCompany", listCompany);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
