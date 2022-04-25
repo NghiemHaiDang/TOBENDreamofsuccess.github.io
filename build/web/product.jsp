@@ -39,7 +39,7 @@
                     <div class="account pull-right">
                         <ul class="user-menu">				
                             <li><a href="#">Tài khoản của tôi</a></li>
-                            <li><a href="cart.html">Thông tin ứng tuyển</a></li>
+                            <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkout.html">Checkout</a></li>					
                             <li><a href="register.html">Đăng nhập</a></li>			
                         </ul>
@@ -109,7 +109,7 @@
                         <div class="block">	
                             <ul class="nav nav-list">
                                 <li class="nav-header">Tính chất công việc</li>
-                                    <c:forEach items="${listCategory}" var="ct">
+                                    <c:forEach items="${sessionScope.listCategory}" var="ct">
                                     <li><a href="filterCategoryController?categoryId=${ct.id}">${ct.ct_name}</a></li>
                                     </c:forEach>
                             </ul>

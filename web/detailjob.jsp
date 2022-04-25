@@ -78,8 +78,9 @@
                             </div>
                             <div class="span5">
                                 <form class="form-inline">
-                                    <button class="btn btn-inverse" type="button">Thêm vào danh sách</button>
-                                    <button class="btn btn-inverse" type="button">Ứng tuyển ngay</button>
+                                    <a href="addtocardServlet?jobId=${job.id}"><button class="btn btn-inverse" type="button">Thêm vào danh sách</button></a>
+                                    <a><button class="btn btn-inverse" type="button">Ứng tuyển ngay</button></a>
+                                   
                                 </form>
                             </div>							
                         </div>

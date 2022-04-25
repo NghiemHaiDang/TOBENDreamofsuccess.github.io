@@ -40,6 +40,14 @@
         <servlet-name>detailjob</servlet-name>
         <servlet-class>controller.detailjob</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addtocardServlet</servlet-name>
+        <servlet-class>controller.addtocardServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cartServlet</servlet-name>
+        <servlet-class>controller.cartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>detailjob</servlet-name>
         <url-pattern>/detailjob</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addtocardServlet</servlet-name>
+        <url-pattern>/addtocardServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cartServlet</servlet-name>
+        <url-pattern>/cartServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
