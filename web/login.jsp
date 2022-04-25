@@ -27,16 +27,17 @@
             <div class="row">
                 <div class="span4">
                     <form method="POST" class="search_form">
-                        <input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
+                        <input type="text" class="input-block-level search-query" Placeholder="Search - Jobs">
                     </form>
                 </div>
                 <div class="span8">
                     <div class="account pull-right">
-                        <ul class="user-menu">				
-                            <li><a href="#">Tài khoản của tôi</a></li>
-                            <li><a href="cart.html">Thông tin ứng tuyển</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>					
-                            <li><a href="register.html">Đăng nhập</a></li>		
+                        <ul class="user-menu">
+                            <li><a href="homeServlet">Trang chủ</a></li>
+                            <li><a href="loginServlet">Tài khoản của tôi</a></li>
+                            <li><a href="loginServlet">Thông tin ứng tuyển</a></li>
+                            <li><a href="loginServlet">Checkout</a></li>					
+                            <li><a href="loginServlet">Đăng nhập</a></li>		
                         </ul>
                     </div>
                 </div>
@@ -45,29 +46,7 @@
         <div id="wrapper" class="container">
             <section class="navbar main-menu">
                 <div class="navbar-inner main-menu">				
-                    <a href="index.html" class="local logo pull-left">TOBEN - Dream Of Success</a>
-                    <!--                    <nav id="menu" class="pull-right">
-                                            <ul>
-                                                <li><a href="./products.html">Woman</a>					
-                                                    <ul>
-                                                        <li><a href="./products.html">Lacinia nibh</a></li>									
-                                                        <li><a href="./products.html">Eget molestie</a></li>
-                                                        <li><a href="./products.html">Varius purus</a></li>									
-                                                    </ul>
-                                                </li>															
-                                                <li><a href="./products.html">Man</a></li>			
-                                                <li><a href="./products.html">Sport</a>
-                                                    <ul>									
-                                                        <li><a href="./products.html">Gifts and Tech</a></li>
-                                                        <li><a href="./products.html">Ties and Hats</a></li>
-                                                        <li><a href="./products.html">Cold Weather</a></li>
-                                                    </ul>
-                                                </li>							
-                                                <li><a href="./products.html">Hangbag</a></li>
-                                                <li><a href="./products.html">Best Seller</a></li>
-                                                <li><a href="./products.html">Top Seller</a></li>
-                                            </ul>
-                                        </nav>-->
+                    <a href="homeServlet" class="local logo pull-left">TOBEN - Dream Of Success</a>
                 </div>
             </section>			
             <section class="header_text sub">
@@ -145,33 +124,26 @@
             <section id="footer-bar">
                 <div class="row">
                     <div class="span3">
-                        <h4>Navigation</h4>
+                        <h4>Thông tin</h4>
                         <ul class="nav">
-                            <li><a href="./index.html">Trang chủ</a></li>  
-                            <li><a href="./about.html">Về chúng tôi</a></li>
-                            <li><a href="./contact.html">Liên hệ</a></li>
-                            <li><a href="./cart.html">Thông tin ứng tuyển</a></li>
-                            <li><a href="./register.html">Đăng nhập</a></li>							
+                            <li><a href="homeServlet">Trang chủ</a></li>  
+                            <li><a href="loginServlet">Về chúng tôi</a></li>
+                            <li><a href="loginServlet">Liên hệ</a></li>
+                            <li><a href="loginServlet">Thông tin ứng tuyển</a></li>
+                            <li><a href="loginServlet">Đăng nhập</a></li>							
                         </ul>					
                     </div>
                     <div class="span4">
                         <h4>Tài khoản của bạn</h4>
                         <ul class="nav">
-                            <li><a href="#">Tài khoản của bạn</a></li>
-                            <li><a href="#">Sự kiện</a></li>
+                            <li><a href="loginServlet">Tài khoản của bạn</a></li>
+                            <li><a href="loginServlet">Sự kiện</a></li>
                         </ul>
                     </div>
                     <div class="span5">
                         <p style="color:#eb4800;">TOBEN - Dream Of Success</p>
                         Càng khó khăn bao nhiêu thì thành quả bạn nhận được càng to lớn bấy nhiêu. Hãy coi những khó khăn là một cơ hội đi tới thành công lớn lao
                         <br/>TOBEN - Dream Of Success khám phá bản thân, tiến đến tương lai.
-                        <br/>
-                        <span class="social_icons">
-                            <a class="facebook" href="#">Facebook</a>
-                            <a class="twitter" href="#">Twitter</a>
-                            <a class="skype" href="#">Skype</a>
-                            <a class="vimeo" href="#">Vimeo</a>
-                        </span>
                     </div>					
                 </div>	
             </section>

@@ -28,6 +28,18 @@
         <servlet-name>companyinformationServlet</servlet-name>
         <servlet-class>controller.companyinformationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>controller.search</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>detailJob</servlet-name>
+        <servlet-class>detailJob</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>detailjob</servlet-name>
+        <servlet-class>controller.detailjob</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
@@ -55,6 +67,18 @@
     <servlet-mapping>
         <servlet-name>companyinformationServlet</servlet-name>
         <url-pattern>/companyinformationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>detailJob</servlet-name>
+        <url-pattern>/detailJob</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>detailjob</servlet-name>
+        <url-pattern>/detailjob</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

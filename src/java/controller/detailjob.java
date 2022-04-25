@@ -4,11 +4,7 @@
  */
 package controller;
 
-import Context.categoryDAO;
-import Context.companyDAO;
 import Context.jobDAO;
-import Model.Category;
-import Model.Company;
 import Model.Job;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,13 +12,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class productjobServlet extends HttpServlet {
+public class detailjob extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,29 +31,10 @@ public class productjobServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        final int PAGE_SIZE = 6;
-        categoryDAO ctDao = new categoryDAO();
-        companyDAO cpDao = new companyDAO();
-        jobDAO jobDao = new jobDAO();
-        ArrayList<Category> listCategory = ctDao.getAllCategory();
-        ArrayList<Company> listCompany = cpDao.getAllCompany();
-        request.setAttribute("listCategory", listCategory);
-        request.setAttribute("listCompany", listCompany);
-        int page = 1;
-        String pageStr = request.getParameter("page");
-        if (pageStr != null) {
-            page = Integer.parseInt(pageStr);
-        }
-        ArrayList<Job> listJob = jobDao.getAllJobWithPagging(page, PAGE_SIZE);
-        int totalJobs = jobDao.getTotalJobs();
-        int totalPage = totalJobs / PAGE_SIZE;
-        if (totalJobs % PAGE_SIZE != 0) {
-            totalPage += 1;
-        }
-        request.setAttribute("page", page);
-        request.setAttribute("listJob", listJob);
-        request.setAttribute("totalPage", totalPage);
-        request.getRequestDispatcher("product.jsp").forward(request, response);
+        int jobid = Integer.parseInt(request.getParameter("jobId"));  
+        Job job = new jobDAO().getJobById(jobid);
+        request.setAttribute("job", job);
+        request.getRequestDispatcher("detailjob.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -27,8 +27,12 @@
         <div id="top-bar" class="container">
             <div class="row">
                 <div class="span4">
-                    <form method="POST" class="search_form">
-                        <input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
+                    <form action="search" method="POST" class="search_form">
+                        <input style="color: black;" type="search" class="search-query" name="keyword" Placeholder="Tìm kiếm">
+                        <button style="	border-radius: 5px;
+                                background-color: #eb4800;
+                                color: #fff;
+                                border-style: none;" type="submit">Tìm kiếm</button>
                     </form>
                 </div>
                 <div class="span8">
@@ -72,27 +76,33 @@
                     <div class="span9">								
                         <ul class="thumbnails listing-products">
                             <c:forEach items="${listJob}" var="job">
-                            <li class="span3">
-                                <div style="height: 200px" class="product-box border-job">
-                                    <span class="sale_tag"></span>												
-                                    <a href="#"><img alt="" src="${job.imageurl}"></a><br/>
-                                    <a href="#" class="title">${job.job_name}</a><br/>
-                                    <a href="#" class="category">Expirationdate: ${job.expirationdate}</a>
-                                    <p class="price">${job.salary}</p>
-                                </div>
-                            </li>       
+                                <li class="span3">
+                                    <div style="height: 200px" class="product-box border-job">
+                                        <span class="sale_tag"></span>												
+                                        <a href="detailjob?jobId=${job.id}"><img alt="" src="${job.imageurl}"></a><br/>
+                                        <a href="#" class="title">${job.job_name}</a><br/>
+                                        <a href="#" class="category">Expirationdate: ${job.expirationdate}</a>
+                                        <p class="price">${job.salary}</p>
+                                    </div>
+                                </li>       
                             </c:forEach>
                         </ul>								
                         <hr>
                         <div class="pagination pagination-small pagination-centered">
-                            <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li><a href="productjobServlet?page=1">1</a></li>
-                                <li><a href="productjobServlet?page=2">2</a></li>
-                                <li><a href="productjobServlet?page=3">3</a></li>
-                                <li><a href="productjobServlet?page=4">4</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
+                            <c:choose>
+                                <c:when test="${listJob==null||listJob.size()==0}">
+                                    Không tìm thấy
+                                </c:when>
+                                <c:otherwise>
+                                    <ul>
+                                        <li><a href="productjobServlet?page=${page-1}">Prev</a></li>
+                                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                            <li><a id="${i==page?"pageStr":""}" href="productjobServlet?page=${i}">${i}</a></li>
+                                            </c:forEach>
+                                        <li><a href="productjobServlet?page=${page+1}">Next</a></li>
+                                    </ul>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <div class="span3 col">

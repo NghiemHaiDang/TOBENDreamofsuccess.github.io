@@ -23,6 +23,10 @@ ul li a,a{
 a{
     color:#eb4800;
 }
+#pageStr{
+    background-color: #eb4800;
+    color: #fff;
+}
 a:hover{
     color:#fd4004;
     text-decoration:none;
@@ -128,7 +132,7 @@ section.homepage-slider p{
     margin-top: 10px;
 }
 .border-job{
-    
+
 }
 class="background-slide"
 section.homepage-slider span{

@@ -83,4 +83,98 @@ public class jobDAO extends BaseDAO<Job> {
         return jobs;
     }
 
+    public ArrayList<Job> getAllJobWithPagging(int page, int PAGE_SIZE) {
+        ArrayList<Job> jobs = new ArrayList<>();
+        try {
+            String sql = "select * from job order by id offset (?-1)*? row fetch next ? rows only";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, page);
+            statement.setInt(2, PAGE_SIZE);
+            statement.setInt(3, PAGE_SIZE);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Job job = new Job();
+                job.setId(rs.getInt("id"));
+                job.setJob_name(rs.getString("job_name"));
+                job.setDescription(rs.getString("description"));
+                job.setSalary(rs.getString("salary"));
+                job.setCategoryid(rs.getInt("categoryid"));
+                job.setCompanyid(rs.getInt("companyid"));
+                job.setRecruitmentdate(rs.getDate("recruitmentdate"));
+                job.setExpirationdate(rs.getDate("expirationdate"));
+                job.setImageurl(rs.getString("imageurl"));
+                jobs.add(job);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(categoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jobs;
+    }
+
+    public int getTotalJobs() {
+        ArrayList<Job> jobs = new ArrayList<>();
+        try {
+            String sql = "select count(*) from job";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(categoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public List<Job> search(String keyword) {
+        ArrayList<Job> jobs = new ArrayList<>();
+        try {
+            String sql = "select *from job where job_name like ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "%" + keyword + "%");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Job job = new Job();
+                job.setId(rs.getInt("id"));
+                job.setJob_name(rs.getString("job_name"));
+                job.setDescription(rs.getString("description"));
+                job.setSalary(rs.getString("salary"));
+                job.setCategoryid(rs.getInt("categoryid"));
+                job.setCompanyid(rs.getInt("companyid"));
+                job.setRecruitmentdate(rs.getDate("recruitmentdate"));
+                job.setExpirationdate(rs.getDate("expirationdate"));
+                job.setImageurl(rs.getString("imageurl"));
+                jobs.add(job);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(categoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jobs;
+    }
+
+    public Job getJobById(int jobid) {
+        ArrayList<Job> jobs = new ArrayList<>();
+        try {
+            String sql = "select *from job where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, jobid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Job job = new Job();
+                job.setId(rs.getInt("id"));
+                job.setJob_name(rs.getString("job_name"));
+                job.setDescription(rs.getString("description"));
+                job.setSalary(rs.getString("salary"));
+                job.setCategoryid(rs.getInt("categoryid"));
+                job.setCompanyid(rs.getInt("companyid"));
+                job.setRecruitmentdate(rs.getDate("recruitmentdate"));
+                job.setExpirationdate(rs.getDate("expirationdate"));
+                job.setImageurl(rs.getString("imageurl"));
+                return job;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(categoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

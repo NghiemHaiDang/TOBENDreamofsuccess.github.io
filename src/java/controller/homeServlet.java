@@ -37,13 +37,16 @@ public class homeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         categoryDAO ctDao = new categoryDAO();
         companyDAO cpDao = new companyDAO();
+        jobDAO jobDao = new jobDAO();
         ArrayList<Category> listCategory = ctDao.getAllCategory();
         ArrayList<Company> listCompany = cpDao.getAllCompany();
+        ArrayList<Job> listJob = jobDao.getAllJob();
         request.setAttribute("listCategory", listCategory);
-        request.setAttribute("listCompany", listCompany);
+        int sizeList = jobDao.getTotalJobs();
+        request.setAttribute("listCompany", listCompany.subList(0, sizeList));
+        request.setAttribute("listJob", listJob.subList(sizeList-4, sizeList));
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
