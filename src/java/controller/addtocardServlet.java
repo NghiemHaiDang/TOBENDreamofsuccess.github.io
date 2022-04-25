@@ -48,6 +48,7 @@ public class addtocardServlet extends HttpServlet {
             carts.put(jobid, Cart.builder().job(job).build());
         }
         session.setAttribute("carts", carts);
+        System.out.println(carts);
         response.sendRedirect("detailjob?jobId=" + jobid);
     }
 

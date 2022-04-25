@@ -32,7 +32,7 @@
                     <div class="account pull-right">
                         <ul class="user-menu">				
                             <li><a href="#">Tài khoản của tôi</a></li>
-                            <li><a href="cart.html">Thông tin ứng tuyển</a></li>
+                            <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkout.html">Checkout</a></li>					
                             <li><a href="register.html">Đăng nhập</a></li>		
                         </ul>
@@ -46,7 +46,7 @@
                     <a href="index.html" class="local logo pull-left">TOBEN - Dream Of Success</a>
                     <nav id="menu" class="pull-right">
                         <ul>
-                            <li><a href="./products.html">Tuyển dụng</a></li>															
+                            <li><a href="productjobServlet">Tuyển dụng</a></li>															
                             <li><a href="./products.html">Tính chất công việc</a></li>			
                             <li><a href="./products.html">Về chúng tôi</a></li>							
                             <li><a href="./products.html">Sự kiện</a></li>
