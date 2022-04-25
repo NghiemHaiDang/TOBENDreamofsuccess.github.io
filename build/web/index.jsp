@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>TOBEN - Dream Of Success</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="themes/css/bootstrappage.css" rel="stylesheet"/>
@@ -38,7 +38,7 @@
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="cart.html">Thông tin ứng tuyển</a></li>
                             <li><a href="checkout.html">Checkout</a></li>					
-                            <li><a href="register.html">Đăng nhập</a></li>		
+                            <li><a href="loginServlet">Đăng nhập</a></li>		
                         </ul>
                     </div>
                 </div>

@@ -59,7 +59,7 @@ public final class product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta charset=\"utf-8\">\n");
-      out.write("        <title>Bootstrap E-commerce Templates</title>\n");
+      out.write("        <title>TOBEN - Dream Of Success</title>\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
       out.write("        <meta name=\"description\" content=\"\">\n");
       out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">      \n");

@@ -9,6 +9,7 @@ package Model;
  * @author Admin
  */
 public class Company {
+
     private int id;
     private String company_name;
     private String address;
@@ -17,6 +18,14 @@ public class Company {
     private String imageurlcompany;
 
     public Company() {
+    }
+
+    public Company(String company_name, String address, String ceo, String phonecompany, String imageurlcompany) {
+        this.company_name = company_name;
+        this.address = address;
+        this.ceo = ceo;
+        this.phonecompany = phonecompany;
+        this.imageurlcompany = imageurlcompany;
     }
 
     public Company(int id, String company_name, String address, String ceo, String phonecompany, String imageurlcompany) {
@@ -75,6 +84,5 @@ public class Company {
     public void setImageurlcompany(String imageurlcompany) {
         this.imageurlcompany = imageurlcompany;
     }
-    
-    
+
 }

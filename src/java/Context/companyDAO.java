@@ -6,6 +6,7 @@ package Context;
 
 import Model.Category;
 import Model.Company;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,12 +19,12 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class companyDAO extends BaseDAO<Company> {
-    
+
     @Override
     public ArrayList<Company> getAllCategory() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public ArrayList<Company> getAllCompany() {
         ArrayList<Company> companys = new ArrayList<>();
@@ -51,5 +52,20 @@ public class companyDAO extends BaseDAO<Company> {
     public ArrayList<Company> getAllJob() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    public void insertCompany(Company c) {
+        try {
+            String sql = "insert into company(company_name, address, ceo, phonecompany,imageurlcompany) values (?,?,?,?,?);";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, c.getCompany_name());
+            statement.setString(2, c.getAddress());
+            statement.setString(3, c.getCeo());
+            statement.setString(4, c.getPhonecompany());
+            statement.setString(5, c.getImageurlcompany());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(companyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
