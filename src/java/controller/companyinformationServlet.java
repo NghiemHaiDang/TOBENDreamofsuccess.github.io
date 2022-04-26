@@ -38,16 +38,15 @@ public class companyinformationServlet extends HttpServlet {
         String phonecompany = request.getParameter("phonecompany");
         String imageurlcompany = request.getParameter("imageurlcompany");
         checkInput checkinput = new checkInput();
-        if (checkinput.checkInputCompany(company_name, address, ceo, phonecompany, imageurlcompany)) {
-            String imageurlcompany1 = "Jobpictures/" + imageurlcompany;
-            companyDAO cp = new companyDAO();
-            Company company = new Company(company_name, address, ceo, phonecompany, imageurlcompany1);
-            cp.insertCompany(company);
-            request.getRequestDispatcher("businessregistration").forward(request, response);
-        } else {
-            request.getRequestDispatcher("loginServlet").forward(request, response);
-        }
-
+//        if (checkinput.checkInputCompany(company_name, address, ceo, phonecompany, imageurlcompany)) {
+        String imageurlcompany1 = "Jobpictures/" + imageurlcompany;
+        companyDAO cp = new companyDAO();
+        Company company = new Company(company_name, address, ceo, phonecompany, imageurlcompany1);
+        cp.insertCompany(company);
+        request.getRequestDispatcher("businessregistration").forward(request, response);
+//        } else {
+//            request.getRequestDispatcher("loginServlet").forward(request, response);
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

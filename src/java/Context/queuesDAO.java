@@ -4,14 +4,13 @@
  */
 package Context;
 
-import Context.BaseDAO;
-import Model.Category;
-import Model.Company;
+import Model.Job;
+import Model.Queues;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,55 +18,59 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class categoryDAO extends BaseDAO<Category> {
-    
+public class queuesDAO extends BaseDAO<Queues> {
+
     @Override
-    public ArrayList<Category> getAllCategory() {
-        ArrayList<Category> categorys = new ArrayList<>();
+    public ArrayList<Queues> getAllCategory() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Queues> getAllCompany() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Queues> getAllJob() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Queues> getAllQueues() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public int createReturnId(Queues queues) {
         try {
-            String sql = "select *from category";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                Category c = new Category();
-                c.setId(rs.getInt("id"));
-                c.setCt_name(rs.getString("ct_name"));
-                categorys.add(c);
+            String sql = "insert into Queues(name,phone,address) values (?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, queues.getName());
+            statement.setString(2, queues.getPhone());
+            statement.setString(3, queues.getAddress());
+            statement.executeUpdate();
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(categoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(queuesDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return categorys;
+        return 0;
     }
 
     @Override
-    public ArrayList<Category> getAllCompany() {
+    public ArrayList<Queues> getAllOrder() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Category> getAllJob() {
+    public ArrayList<Queues> getAllOrderDetail() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Category> getAllQueues() {
+    public ArrayList<Queues> getAllAccount() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public ArrayList<Category> getAllOrder() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<Category> getAllOrderDetail() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<Category> getAllAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

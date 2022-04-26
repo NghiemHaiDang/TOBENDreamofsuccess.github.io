@@ -57,29 +57,28 @@
                 <div class="row">
                     <div class="span5">					
                         <h4 class="title"><span class="text"><strong>Đăng nhập</strong> </span></h4>
-                        <form action="#" method="post">
+                        <form action="loginServlet" method="POST">
                             <input type="hidden" name="next" value="/">
                             <fieldset>
                                 <div class="control-group">
                                     <label class="control-label">Tên đăng nhập:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Tên đăng nhập của bạn" id="username" class="input-xlarge">
+                                        <input type="text" placeholder="Tên đăng nhập của bạn" id="username" name="username" class="input-xlarge">
                                     </div>
                                 </div>
-                                <div class="control-group">
+                                <div class="control-group"> 
                                     <label class="control-label">Mật khẩu:</label>
                                     <div class="controls">
-                                        <input type="password" placeholder="Mậu khẩu của bạn" id="password" class="input-xlarge">
+                                        <input type="password" placeholder="Mậu khẩu của bạn" id="password" name="password" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Ghi nhớ tài khoản của bạn : <input type="checkbox"></label>
+                                    <label class="control-label">Ghi nhớ tài khoản của bạn : <input type="checkbox" name="remember"></label>
                                 </div>
                                 <div class="control-group">
-                                    <input tabindex="3" class="btn btn-inverse large" type="submit" value="Đăng nhập">
-                                    <hr>
-                                    <p class="reset">Khôi phục <a tabindex="4" href="#" title="Recover your username or password">tên đăng nhập hoặc mật khẩu</a></p>
+                                    <input type="submit" value="Đăng nhập">
                                 </div>
+                                <h3>${error}</h3>
                             </fieldset>
                         </form>				
                     </div>

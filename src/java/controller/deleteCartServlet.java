@@ -4,26 +4,22 @@
  */
 package controller;
 
-import Context.categoryDAO;
-import Context.companyDAO;
-import Context.jobDAO;
-import Model.Category;
-import Model.Company;
-import Model.Job;
+import Model.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
  * @author Admin
  */
-public class homeServlet extends HttpServlet {
+public class deleteCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,17 +33,19 @@ public class homeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        categoryDAO ctDao = new categoryDAO();
-        companyDAO cpDao = new companyDAO();
-        jobDAO jobDao = new jobDAO();
-        ArrayList<Category> listCategory = ctDao.getAllCategory();
-        ArrayList<Company> listCompany = cpDao.getAllCompany();
-        ArrayList<Job> listJob = jobDao.getAllJob();
-        request.setAttribute("listCategory", listCategory);
-        int sizeList = jobDao.getTotalJobs();
-        request.setAttribute("listCompany", listCompany.subList(1, 3));
-        request.setAttribute("listJob", listJob.subList(1, 3));
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            int jobid = Integer.parseInt(request.getParameter("jobId"));
+            HttpSession session = request.getSession();
+            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+            if (carts == null) {
+                carts = new LinkedHashMap<>();
+            }
+            if (carts.containsKey(jobid)) {
+                carts.remove(jobid);
+            }
+            session.setAttribute("carts", carts);
+            response.sendRedirect("cartServlet");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

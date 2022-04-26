@@ -4,14 +4,12 @@
  */
 package Context;
 
-import Context.BaseDAO;
+import Model.Account;
 import Model.Category;
-import Model.Company;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,55 +17,59 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class categoryDAO extends BaseDAO<Category> {
-    
+public class accountDAO extends BaseDAO<Account> {
+
     @Override
-    public ArrayList<Category> getAllCategory() {
-        ArrayList<Category> categorys = new ArrayList<>();
+    public ArrayList<Account> getAllCategory() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Account> getAllCompany() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Account> getAllJob() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Account> getAllQueues() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Account> getAllOrder() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Account> getAllOrderDetail() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Account> getAllAccount() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Account login(String username, String password) {
         try {
-            String sql = "select *from category";
+            String sql = "select *from account where username = ? and password =?";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
+            statement.setString(1, username);
+            statement.setString(2, password);
             while (rs.next()) {
-                Category c = new Category();
-                c.setId(rs.getInt("id"));
-                c.setCt_name(rs.getString("ct_name"));
-                categorys.add(c);
+                Account account = Account.builder().id(rs.getInt(1)).username(rs.getString(2)).password(rs.getString(3)).
+                        displayname(rs.getString(4)).address(rs.getString(5)).email(rs.getString(6)).phone(rs.getString(7)).build();
+                return account;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(categoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(accountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return categorys;
+        return null;
     }
 
-    @Override
-    public ArrayList<Category> getAllCompany() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<Category> getAllJob() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<Category> getAllQueues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<Category> getAllOrder() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<Category> getAllOrderDetail() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<Category> getAllAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

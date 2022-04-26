@@ -4,26 +4,27 @@
  */
 package controller;
 
-import Context.categoryDAO;
-import Context.companyDAO;
-import Context.jobDAO;
-import Model.Category;
-import Model.Company;
-import Model.Job;
+import Context.orderDAO;
+import Context.orderdetailDAO;
+import Context.queuesDAO;
+import Model.Cart;
+import Model.Order;
+import Model.Queues;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
  * @author Admin
  */
-public class homeServlet extends HttpServlet {
+public class checkoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,17 +38,19 @@ public class homeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        categoryDAO ctDao = new categoryDAO();
-        companyDAO cpDao = new companyDAO();
-        jobDAO jobDao = new jobDAO();
-        ArrayList<Category> listCategory = ctDao.getAllCategory();
-        ArrayList<Company> listCompany = cpDao.getAllCompany();
-        ArrayList<Job> listJob = jobDao.getAllJob();
-        request.setAttribute("listCategory", listCategory);
-        int sizeList = jobDao.getTotalJobs();
-        request.setAttribute("listCompany", listCompany.subList(1, 3));
-        request.setAttribute("listJob", listJob.subList(1, 3));
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+            if (carts == null) {
+                carts = new LinkedHashMap<>();
+            }
+            for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
+                Integer jobId = entry.getKey();
+                Cart cart = entry.getValue();
+            }
+            request.getRequestDispatcher("checkout.jsp").forward(request, response);
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,7 +79,21 @@ public class homeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String name = request.getParameter("name");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String note = request.getParameter("note");
+        HttpSession session = request.getSession();
+        Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+        if (carts == null) {
+            carts = new LinkedHashMap<>();
+        }
+        Queues queues = Queues.builder().name(name).phone(phone).address(address).build();
+        int queuesId = new queuesDAO().createReturnId(queues);
+        Order order = Order.builder().account_id(1).note(note).queues_id(queuesId).build();
+        int orderId = new orderDAO().createReturnId(order);
+        new orderdetailDAO().saveCart(orderId, carts);
+
     }
 
     /**

@@ -99,8 +99,8 @@
                                             <!-- Set columns width -->
                                             <th class="text-center py-3 px-4" style="min-width: 400px;">Thông tin ứng tuyển</th>
                                             <th class="text-right py-3 px-4" style="width: 100px;">Mức lương</th>
-                                            <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
-                                            <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
+                                            <th class="text-center py-3 px-4" style="width: 120px;">Ngày tuyển dụng</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Ngày hết hạn</th>
                                             <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
                                         </tr>
                                     </thead>
@@ -116,38 +116,18 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.salary}</td>
-                                                <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.recruitmentdate}</td>
                                                 <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.expirationdate}</td>
-                                                <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                                                <td class="text-center align-middle px-0"><a href="deleteCartServlet?jobId=${C.value.job.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- / Shopping cart table -->
-
-                            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
-                                <div class="mt-4">
-                                    <label class="text-muted font-weight-normal">Promocode</label>
-                                    <input type="text" placeholder="ABC" class="form-control">
-                                </div>
-                                <div class="d-flex">
-                                    <div class="text-right mt-4 mr-5">
-                                        <label class="text-muted font-weight-normal m-0">Discount</label>
-                                        <div class="text-large"><strong>$20</strong></div>
-                                    </div>
-                                    <div class="text-right mt-4">
-                                        <label class="text-muted font-weight-normal m-0">Total price</label>
-                                        <div class="text-large"><strong>$1164.65</strong></div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="float-right">
-                                <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>
-                                <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
+                                <a href="productjobServlet"><button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button></a>
+                                <a href="checkoutServlet"><button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button></a>
                             </div>
-
                         </div>
                     </div>
                 </div>

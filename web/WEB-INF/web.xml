@@ -48,6 +48,14 @@
         <servlet-name>cartServlet</servlet-name>
         <servlet-class>controller.cartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteCartServlet</servlet-name>
+        <servlet-class>controller.deleteCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkoutServlet</servlet-name>
+        <servlet-class>controller.checkoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>cartServlet</servlet-name>
         <url-pattern>/cartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteCartServlet</servlet-name>
+        <url-pattern>/deleteCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkoutServlet</servlet-name>
+        <url-pattern>/checkoutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
