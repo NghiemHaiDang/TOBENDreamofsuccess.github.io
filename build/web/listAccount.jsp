@@ -129,7 +129,7 @@
                                                 <td class="text-right font-weight-semibold align-middle p-4">${C.phone}</td>
                                                 <td class="text-right font-weight-semibold align-middle p-4">${C.role}</td>
                                                 <td class="text-right font-weight-semibold align-middle p-4">
-                                                    <button>Cập nhật</button>
+                                                    <button><a><a href="updateAccount?updateId=${C.id}">Update</a></button>
                                                 </td>
                                                 <td class="text-center align-middle px-0"><a href="deleteAccount?deleteId=${C.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
                                             </tr>

@@ -76,6 +76,10 @@
         <servlet-name>deleteAccount</servlet-name>
         <servlet-class>controller.deleteAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateAccount</servlet-name>
+        <servlet-class>controller.updateAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>deleteAccount</servlet-name>
         <url-pattern>/deleteAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateAccount</servlet-name>
+        <url-pattern>/updateAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

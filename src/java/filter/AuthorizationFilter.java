@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebFilter(filterName = "AuthorizationFilter", urlPatterns = {"/admin/*"})
+@WebFilter(filterName = "AuthorizationFilter", urlPatterns = {"/listAccount","/admin/*"})
 public class AuthorizationFilter implements Filter {
     
     private static final boolean debug = true;
@@ -107,7 +107,7 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = req.getSession();
         //Kiểm tra đăng nhập
         Account account = (Account) session.getAttribute("account");
-        if (account != null && account.getRole().equals(Account.ADMIN)) {
+        if (account != null && account.getRole().equals(Account.admin)) {
             chain.doFilter(request, response);
             return;
         }

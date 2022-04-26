@@ -127,4 +127,47 @@ public class accountDAO extends BaseDAO<Account> {
             Logger.getLogger(accountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public Account getAccount(String id) {
+        try {
+            String sql = "select *from account where id = ? ";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Account account = new Account();
+                account.setId(rs.getInt("id"));
+                account.setUsername(rs.getString("username"));
+                account.setPassword(rs.getString("password"));
+                account.setDisplayname(rs.getString("displayname"));
+                account.setAddress(rs.getString("address"));
+                account.setEmail(rs.getString("email"));
+                account.setPhone(rs.getString("phone"));
+                account.setRole(rs.getString("role"));
+                return account;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(accountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void updateAccount(Account a) {
+        try {
+            String sql = "update account set username = ?, password = ?, displayName = ?, address = ?, email = ?, phone = ?, role = ? where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, a.getUsername());
+            statement.setString(2, a.getPassword());
+            statement.setString(3, a.getDisplayname());
+            statement.setString(4, a.getAddress());
+            statement.setString(5, a.getEmail());
+            statement.setString(6, a.getPhone());
+            statement.setString(7, a.getRole());
+            statement.setInt(8, a.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(accountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
