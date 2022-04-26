@@ -4,21 +4,22 @@
  */
 package controller;
 
-import Context.companyDAO;
-import Model.Company;
-import Validation.checkInput;
+import Context.accountDAO;
+import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class companyinformationServlet extends HttpServlet {
+public class listAccount extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +33,10 @@ public class companyinformationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String company_name = request.getParameter("company_name");
-        String address = request.getParameter("address");
-        String ceo = request.getParameter("ceo");
-        String phonecompany = request.getParameter("phonecompany");
-        String imageurlcompany = request.getParameter("imageurlcompany");
-        checkInput checkinput = new checkInput();
-        String imageurlcompany1 = "Jobpictures/" + imageurlcompany;
-        companyDAO cp = new companyDAO();
-        Company company = new Company(company_name, address, ceo, phonecompany, imageurlcompany1);
-        cp.insertCompany(company);
-        request.getRequestDispatcher("businessregistration.jsp").forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,7 +51,11 @@ public class companyinformationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        accountDAO dao = new accountDAO();
+        List<Account> list = new ArrayList<>();
+        list = dao.getAllAccount();
+        request.setAttribute("listAccount", list);
+        request.getRequestDispatcher("listAccount.jsp").forward(request, response);
     }
 
     /**

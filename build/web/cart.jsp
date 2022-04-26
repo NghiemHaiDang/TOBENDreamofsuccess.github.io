@@ -64,7 +64,15 @@
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="cart.html">Thông tin ứng tuyển</a></li>
                             <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="register.html">Đăng nhập</a></li>
+                                <c:choose>
+                                    <c:when test="${sessionScope.account != null}">
+                                    <li>${sessionScope.account.displayname}</li>
+                                    <li><a href="logoutServlet">Đăng xuất</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <li><a href="loginServlet">Đăng nhập</a></li>
+                                    </c:otherwise>
+                                </c:choose>
                         </ul>
                     </div>
                 </div>

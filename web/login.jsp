@@ -78,43 +78,73 @@
                                 <div class="control-group">
                                     <input type="submit" value="Đăng nhập">
                                 </div>
-                                <h3>${error}</h3>
+                                <h4>${error}</h4>
+
                             </fieldset>
                         </form>				
                     </div>
                     <div class="span7">					
                         <h4 class="title"><span class="text"><strong>Đăng ký</strong> </span></h4>
-                        <form action="#" method="post" class="form-stacked">
+                        <form action="registeraccount" class="form-stacked">
                             <fieldset>
                                 <div class="control-group">
                                     <label class="control-label">Tên đăng nhập:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Tên đăng nhập của bạn" class="input-xlarge">
+                                        <input type="text" placeholder="Tên đăng nhập của bạn" name="usname" class="input-xlarge">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Tên hiển thị:</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Tên hiển thị" name="displayname" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Địa chỉ email:</label>
                                     <div class="controls">
-                                        <input type="password" placeholder="Email của bạn" class="input-xlarge">
+                                        <input type="email" placeholder="Email của bạn" name="email" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Mậu khẩu:</label>
                                     <div class="controls">
-                                        <input type="password" placeholder="Nhập mật khẩu" class="input-xlarge">
+                                        <input type="password" placeholder="Nhập mật khẩu" name="pass" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Nhập lại mật khẩu:</label>
                                     <div class="controls">
-                                        <input type="password" placeholder="Nhập lại mật khẩu" class="input-xlarge">
+                                        <input type="password" placeholder="Nhập lại mật khẩu" name="passagain" class="input-xlarge">
                                     </div>
-                                </div>	
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Địa chỉ:</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Địa chỉ" name="address" class="input-xlarge">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Số điện thoại:</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Số điện thoại" name="phone" class="input-xlarge">
+                                    </div>
+                                </div>
+                                 <div class="control-group">
+                                    <label class="control-label">Vai trò:</label>
+                                    <div class="controls">
+                                        <select name="role">
+                                            <option value="admin">Admin</option>
+                                            <option value="usercompany">Người tuyển dụng</option>
+                                            <option value="user">Người ứng tuyển</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="control-group">
                                     <p>Đăng ký để trải nghiệm công việc phù hơn với bạn, chúc bạn một ngày vui vẻ !</p>
                                 </div>
                                 <hr>
                                 <div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Tạo tài khoản"></div>
+                                <h5>${success}</h5>
                             </fieldset>
                         </form>					
                     </div>				

@@ -51,25 +51,80 @@ public class accountDAO extends BaseDAO<Account> {
 
     @Override
     public ArrayList<Account> getAllAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Account> accounts = new ArrayList<>();
+        try {
+            String sql = "select *from account";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setId(rs.getInt("id"));
+                a.setUsername(rs.getString("username"));
+                a.setPassword(rs.getString("password"));
+                a.setDisplayname(rs.getString("displayname"));
+                a.setAddress(rs.getString("address"));
+                a.setEmail(rs.getString("email"));
+                a.setPhone(rs.getString("phone"));
+                a.setRole(rs.getString("role"));
+                accounts.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(accountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return accounts;
     }
 
     public Account login(String username, String password) {
         try {
-            String sql = "select *from account where username = ? and password =?";
+            String sql = "select *from account where username = ? and password = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
             statement.setString(1, username);
             statement.setString(2, password);
-            while (rs.next()) {
-                Account account = Account.builder().id(rs.getInt(1)).username(rs.getString(2)).password(rs.getString(3)).
-                        displayname(rs.getString(4)).address(rs.getString(5)).email(rs.getString(6)).phone(rs.getString(7)).build();
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Account account = new Account();
+                account.setId(rs.getInt("id"));
+                account.setUsername(rs.getString("username"));
+                account.setPassword(rs.getString("password"));
+                account.setDisplayname(rs.getString("displayname"));
+                account.setAddress(rs.getString("address"));
+                account.setEmail(rs.getString("email"));
+                account.setPhone(rs.getString("phone"));
+                account.setRole(rs.getString("role"));
                 return account;
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(accountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
+    public void insertAccount(Account a) {
+        try {
+            String sql = "insert into account (username,password,displayName,address,email,phone,role) values (?,?,?,?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, a.getUsername());
+            statement.setString(2, a.getPassword());
+            statement.setString(3, a.getDisplayname());
+            statement.setString(4, a.getAddress());
+            statement.setString(5, a.getEmail());
+            statement.setString(6, a.getPhone());
+            statement.setString(7, a.getRole());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(accountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deleteAccount(String id) {
+        try {
+            String sql = "delete account where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(accountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

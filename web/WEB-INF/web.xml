@@ -56,6 +56,26 @@
         <servlet-name>checkoutServlet</servlet-name>
         <servlet-class>controller.checkoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>controller.logoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>controller.AdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>registeraccount</servlet-name>
+        <servlet-class>controller.registeraccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listAccount</servlet-name>
+        <servlet-class>controller.listAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteAccount</servlet-name>
+        <servlet-class>controller.deleteAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
@@ -111,6 +131,34 @@
     <servlet-mapping>
         <servlet-name>checkoutServlet</servlet-name>
         <url-pattern>/checkoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutServlet</servlet-name>
+        <url-pattern>/logoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern/>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern/>
+    </filter-mapping>
+    <servlet-mapping>
+        <servlet-name>registeraccount</servlet-name>
+        <url-pattern>/registeraccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listAccount</servlet-name>
+        <url-pattern>/listAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteAccount</servlet-name>
+        <url-pattern>/deleteAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

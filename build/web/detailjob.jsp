@@ -34,7 +34,15 @@
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkout.html">Checkout</a></li>					
-                            <li><a href="register.html">Đăng nhập</a></li>		
+                            <c:choose>
+                                <c:when test="${sessionScope.account != null}">
+                                    <li>${sessionScope.account.displayname}</li>
+                                    <li><a href="logoutServlet">Đăng xuất</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="loginServlet">Đăng nhập</a></li>
+                                </c:otherwise>
+                            </c:choose>	
                         </ul>
                     </div>
                 </div>
@@ -80,7 +88,7 @@
                                 <form class="form-inline">
                                     <a href="addtocardServlet?jobId=${job.id}"><button class="btn btn-inverse" type="button">Thêm vào danh sách</button></a>
                                     <a><button class="btn btn-inverse" type="button">Ứng tuyển ngay</button></a>
-                                   
+
                                 </form>
                             </div>							
                         </div>

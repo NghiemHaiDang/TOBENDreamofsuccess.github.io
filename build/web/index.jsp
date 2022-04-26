@@ -37,10 +37,18 @@
                 <div class="span8">
                     <div class="account pull-right">
                         <ul class="user-menu">				
-                            <li><a href="loginServlet">Tài khoản của tôi</a></li>
-                            <li><a href="loginServlet">Thông tin ứng tuyển</a></li>
-                            <li><a href="loginServlet">Checkout</a></li>					
-                            <li><a href="loginServlet">Đăng nhập</a></li>		
+                            <li><a href="#">Tài khoản của tôi</a></li>
+                            <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
+                            <li><a href="checkoutServlet">Checkout</a></li>
+                                <c:choose>
+                                    <c:when test="${sessionScope.account != null}">
+                                    <li>${sessionScope.account.displayname}</li>
+                                    <li><a href="logoutServlet">Đăng xuất</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <li><a href="loginServlet">Đăng nhập</a></li>
+                                    </c:otherwise>
+                                </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -53,8 +61,8 @@
                     <nav id="menu" class="pull-right">
                         <ul>
                             <li><a href="homeServlet">Trang chủ</a></li>
-                            <li><a href="loginServlet">Tuyển dụng</a></li>																
-                            <li><a href="loginServlet">Tính chất công việc</a>`
+                            <li><a href="productjobServlet">Tuyển dụng</a></li>																
+                            <li><a href="#">Tính chất công việc</a>`
                                 <ul>
                                     <% for (Category c : listCategory) {
                                     %>
@@ -64,9 +72,9 @@
                                     <%}%>
                                 </ul>
                             </li>							
-                            <li><a href="./products.html">Về chúng tôi</a></li>
-                            <li><a href="./products.html">Sự kiện</a></li>
-                            <li><a href="./products.html">Liên hệ</a></li>
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="listAccount">Danh sách ứng viên</a></li>
+                            <li><a href="#">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>

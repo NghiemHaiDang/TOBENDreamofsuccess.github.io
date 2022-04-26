@@ -47,6 +47,28 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Cookie[] cookies = request.getCookies();
+        String username = null;
+        String password = null;
+        for (Cookie cooky : cookies) {
+            if (cooky.getName().equals("username")) {
+                username = cooky.getValue();
+            }
+            if (cooky.getName().equals("password")) {
+                password = cooky.getValue();
+            }
+            if (username != null && password != null) {
+                break;
+            }
+        }
+        if (username != null && password != null) {
+            Account account = new accountDAO().login(username, password);
+            if (account != null) {
+                request.getSession().setAttribute("account", account);
+                response.sendRedirect("homeServlet");
+                return;
+            }
+        }
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
@@ -78,7 +100,7 @@ public class loginServlet extends HttpServlet {
             response.sendRedirect("homeServlet");
         } else {
             request.setAttribute("error", "Tài khoản hoặc mật khẩu không đúng");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 

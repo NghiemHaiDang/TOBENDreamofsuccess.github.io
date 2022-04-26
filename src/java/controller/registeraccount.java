@@ -4,9 +4,8 @@
  */
 package controller;
 
-import Context.companyDAO;
-import Model.Company;
-import Validation.checkInput;
+import Context.accountDAO;
+import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class companyinformationServlet extends HttpServlet {
+public class registeraccount extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +31,21 @@ public class companyinformationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String company_name = request.getParameter("company_name");
-        String address = request.getParameter("address");
-        String ceo = request.getParameter("ceo");
-        String phonecompany = request.getParameter("phonecompany");
-        String imageurlcompany = request.getParameter("imageurlcompany");
-        checkInput checkinput = new checkInput();
-        String imageurlcompany1 = "Jobpictures/" + imageurlcompany;
-        companyDAO cp = new companyDAO();
-        Company company = new Company(company_name, address, ceo, phonecompany, imageurlcompany1);
-        cp.insertCompany(company);
-        request.getRequestDispatcher("businessregistration.jsp").forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            String user = request.getParameter("usname");
+            String email = request.getParameter("email");
+            String displayname = request.getParameter("displayname");
+            String pass = request.getParameter("pass");
+            String passagain = request.getParameter("passagain");
+            String address = request.getParameter("address");
+            String phone = request.getParameter("phone");
+            String role = request.getParameter("role");
+            Account account = new Account(-1, user, pass, displayname, address, email, phone, role);
+            accountDAO acdao = new accountDAO();
+            acdao.insertAccount(account);
+            request.setAttribute("success", "Đăng ký tài khoản thành công");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

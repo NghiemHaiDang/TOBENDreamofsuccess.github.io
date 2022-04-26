@@ -4,12 +4,10 @@
  */
 package controller;
 
-import Context.companyDAO;
-import Model.Company;
-import Validation.checkInput;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class companyinformationServlet extends HttpServlet {
+public class logoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +30,26 @@ public class companyinformationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String company_name = request.getParameter("company_name");
-        String address = request.getParameter("address");
-        String ceo = request.getParameter("ceo");
-        String phonecompany = request.getParameter("phonecompany");
-        String imageurlcompany = request.getParameter("imageurlcompany");
-        checkInput checkinput = new checkInput();
-        String imageurlcompany1 = "Jobpictures/" + imageurlcompany;
-        companyDAO cp = new companyDAO();
-        Company company = new Company(company_name, address, ceo, phonecompany, imageurlcompany1);
-        cp.insertCompany(company);
-        request.getRequestDispatcher("businessregistration.jsp").forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            request.getSession().removeAttribute("account");
+            Cookie[] cookies = request.getCookies();
+            String username = null;
+            String password = null;
+            for (Cookie cooky : cookies) {
+                if (cooky.getName().equals("username")) {
+                    cooky.setMaxAge(0);
+                    response.addCookie(cooky);
+                    username = cooky.getValue();
+                }
+                if (cooky.getName().equals("password")) {
+                    cooky.setMaxAge(0);
+                    response.addCookie(cooky);
+                    password = cooky.getValue();
+                }
+            }
+            response.sendRedirect("loginServlet");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

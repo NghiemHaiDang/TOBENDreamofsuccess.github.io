@@ -1,9 +1,8 @@
 <%-- 
-    Document   : cart
-    Created on : Apr 25, 2022, 3:02:30 PM
+    Document   : listAccount
+    Created on : Apr 27, 2022, 2:43:26 AM
     Author     : Admin
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -97,7 +96,7 @@
                     <!-- Shopping cart table -->
                     <div class="card">
                         <div class="card-header">
-                            <h2>Thông tin ứng tuyển</h2>
+                            <h2>Danh sách tài khoản</h2>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -105,45 +104,43 @@
                                     <thead>
                                         <tr>
                                             <!-- Set columns width -->
-                                            <th class="text-center py-3 px-4" style="min-width: 400px;">Thông tin ứng tuyển</th>
-                                            <th class="text-right py-3 px-4" style="width: 100px;">Mức lương</th>
-                                            <th class="text-center py-3 px-4" style="width: 120px;">Ngày tuyển dụng</th>
-                                            <th class="text-right py-3 px-4" style="width: 100px;">Ngày hết hạn</th>
+                                            <th class="text-center py-3 px-4" style="width: 100px;">ID</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Tên tài khoản</th>
+                                            <th class="text-center py-3 px-4" style="width: 100px;">Mật khẩu</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Tên hiển thị</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Địa chỉ</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Email</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Số điện thoại</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Quyền hạn</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Cập nhật thông tin</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Xoá tài khoản</th>
                                             <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${carts}" var="C">
+                                        <c:forEach items="${listAccount}" var="C">
                                             <tr>
-                                                <td class="p-4">
-                                                    <div class="media align-items-center">
-                                                        <img src="${C.value.job.imageurl}" class="d-block ui-w-40 ui-bordered mr-4" alt="">
-                                                        <div class="media-body">
-                                                            <a href="#" class="d-block text-dark">${C.value.job.job_name}</a>
-                                                        </div>
-                                                    </div>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.id}</td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.username}</td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.password}</td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.displayname}</td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.address}</td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.email}</td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.phone}</td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.role}</td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">
+                                                    <button>Cập nhật</button>
                                                 </td>
-                                                <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.salary}</td>
-                                                <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.recruitmentdate}</td>
-                                                <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.expirationdate}</td>
-                                                <td class="text-center align-middle px-0"><a href="deleteCartServlet?jobId=${C.value.job.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                                                <td class="text-center align-middle px-0"><a href="deleteAccount?deleteId=${C.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="float-right">
-                                <a href="productjobServlet"><button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button></a>
-                                <a href="checkoutServlet"><button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button></a>
-                            </div>
                         </div>
                     </div>
                 </div>
-
             </section>
-
-
-
         </div>
     </body>
 </html>

@@ -41,7 +41,15 @@
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkout.html">Checkout</a></li>					
-                            <li><a href="register.html">Đăng nhập</a></li>			
+                                <c:choose>
+                                    <c:when test="${sessionScope.account != null}">
+                                    <li>${sessionScope.account.displayname}</li>
+                                    <li><a href="logoutServlet">Đăng xuất</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <li><a href="loginServlet">Đăng nhập</a></li>
+                                    </c:otherwise>
+                                </c:choose>			
                         </ul>
                     </div>
                 </div>
@@ -50,18 +58,14 @@
         <div id="wrapper" class="container">
             <section class="navbar main-menu">
                 <div class="navbar-inner main-menu">				
-                    <a href="index.html" class="local logo pull-left">TOBEN - Dream Of Success</a>
+                    <a href="homeServlet" class="local logo pull-left">TOBEN - Dream Of Success</a>
                     <nav id="menu" class="pull-right">
                         <ul>
-                            <li><a href="./products.html">Tuyển dụng</a></li>															
-                            <li><a href="./products.html">Tính chất công việc</a>
-                                <ul>									
-                                    <li><a href="./products.html">Gifts and Tech</a></li>
-                                </ul>
-                            </li>			
-                            <li><a href="./products.html">Về chúng tôi</a></li>							
-                            <li><a href="./products.html">Sự kiện</a></li>
-                            <li><a href="./products.html">Liên hệ</a></li>
+                            <li><a href="productjobServlet">Tuyển dụng</a></li>															
+                            <li><a href="#">Tính chất công việc</a></li>			
+                            <li><a href="#">Về chúng tôi</a></li>							
+                            <li><a href="#">Sự kiện</a></li>
+                            <li><a href="#">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -119,66 +123,6 @@
                                     <c:forEach items="${listCompany}" var="cp">
                                     <li><a href="products.html">${cp.company_name}</a></li>
                                     </c:forEach>
-                            </ul>
-                        </div>
-                        <div class="block">
-                            <h4 class="title">
-                                <span class="pull-left"><span class="text">Randomize</span></span>
-                                <span class="pull-right">
-                                    <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-                                </span>
-                            </h4>
-                            <div id="myCarousel" class="carousel slide">
-                                <div class="carousel-inner">
-                                    <div class="active item">
-                                        <ul class="thumbnails listing-products">
-                                            <li class="span3">
-                                                <div class="product-box">
-                                                    <span class="sale_tag"></span>												
-                                                    <img alt="" src="themes/images/ladies/1.jpg"><br/>
-                                                    <a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-                                                    <a href="#" class="category">Suspendisse aliquet</a>
-                                                    <p class="price">$261</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="item">
-                                        <ul class="thumbnails listing-products">
-                                            <li class="span3">
-                                                <div class="product-box">												
-                                                    <img alt="" src="themes/images/ladies/2.jpg"><br/>
-                                                    <a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-                                                    <a href="#" class="category">Urna nec lectus mollis</a>
-                                                    <p class="price">$134</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="block">								
-                            <h4 class="title"><strong>Best</strong> Seller</h4>								
-                            <ul class="small-product">
-                                <li>
-                                    <a href="#" title="Praesent tempor sem sodales">
-                                        <img src="themes/images/ladies/3.jpg" alt="Praesent tempor sem sodales">
-                                    </a>
-                                    <a href="#">Praesent tempor sem</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="Luctus quam ultrices rutrum">
-                                        <img src="themes/images/ladies/4.jpg" alt="Luctus quam ultrices rutrum">
-                                    </a>
-                                    <a href="#">Luctus quam ultrices rutrum</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="Fusce id molestie massa">
-                                        <img src="themes/images/ladies/5.jpg" alt="Fusce id molestie massa">
-                                    </a>
-                                    <a href="#">Fusce id molestie massa</a>
-                                </li>   
                             </ul>
                         </div>
                     </div>
