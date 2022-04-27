@@ -25,6 +25,17 @@ public class Job {
     public Job() {
     }
 
+    public Job(String job_name, String description, String salary, int categoryid, int companyid, Date recruitmentdate, Date expirationdate, String imageurl) {
+        this.job_name = job_name;
+        this.description = description;
+        this.salary = salary;
+        this.categoryid = categoryid;
+        this.companyid = companyid;
+        this.recruitmentdate = recruitmentdate;
+        this.expirationdate = expirationdate;
+        this.imageurl = imageurl;
+    }
+
     public Job(int id, String job_name, String description, String salary, int categoryid, int companyid, Date recruitmentdate, Date expirationdate, String imageurl) {
         this.id = id;
         this.job_name = job_name;

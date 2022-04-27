@@ -72,9 +72,7 @@
                                     <%}%>
                                 </ul>
                             </li>							
-                            <li><a href="businessregistrationServlet">Đăng ký tuyển dụng</a></li>
-                            <li><a href="listAccount">Danh sách tài khoản</a></li>
-                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="businessregistrationServlet">Đăng ký tuyển dụng</a></li> 
                         </ul>
                     </nav>
                 </div>

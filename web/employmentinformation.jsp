@@ -1,6 +1,6 @@
 <%-- 
-    Document   : businessregistration
-    Created on : Apr 25, 2022, 1:31:56 AM
+    Document   : employmentinformation
+    Created on : Apr 28, 2022, 3:57:13 AM
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -72,48 +72,74 @@
             </section>
             <section class="main-content">
                 <div class="row">
-                    <form action="companyinformationServlet">
+                    <form action="employmentInsert">
                         <div class="span5">
-                            <h4 class="title"><span class="text"><strong>Đăng ký</strong> doanh nghiệp</span></h4>
+                            <h4 class="title"><span class="text"><strong>Đăng ký</strong> tuyển dụng</span></h4>
 
                             <input type="hidden" name="next" value="/">
                             <fieldset>
                                 <div class="control-group">
+                                    <label class="control-label">Tên việc làm:</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Tên việc làm" name="jobname"
+                                               class="input-xlarge">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Mô tả công việc:</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Mô tả công việc" name="description"
+                                               class="input-xlarge">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Mức lương:</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Mức lương" name="salary"
+                                               class="input-xlarge">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Loại hình việc làm:</label>
+                                    <div class="controls">
+                                        <select name="category">
+                                            <c:forEach items="${listCategory}" var="ct">
+                                                <option value="${ct.ct_name}">${ct.ct_name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
                                     <label class="control-label">Tên doanh nghiệp:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Tên doanh nghiệp" name="company_name"
-                                               class="input-xlarge">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">CEO doanh nghiệp:</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="CEO" name="ceo"
-                                               class="input-xlarge">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Số điện thoại doanh nghiệp:</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Số điện thoại" name="phonecompany"
-                                               class="input-xlarge">
+                                        <select name="company">
+                                            <c:forEach items="${listCompany}" var="cp">
+                                                <option value="${cp.company_name}">${cp.company_name}</option>
+                                            </c:forEach>
+                                        </select>
                                     </div>
                                 </div>
                             </fieldset>
                         </div>
                         <div class="span7">
-                            <h4 class="title"><span class="text"><strong>Dành cho</strong> doanh nghiệp</span></h4>
+                            <h4 class="title"><span class="text"><strong>Dành cho</strong> tuyển dụng</span></h4>
                             <fieldset>
                                	<div class="control-group">
-                                    <label class="control-label">Địa chỉ doanh nghiệp:</label>
+                                    <label class="control-label">Ngày tuyển dụng:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Địa chỉ" name="address" class="input-xlarge">
+                                        <input type="date" placeholder="Ngày tuyển dụng" name="recruitmentdate" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Hình ảnh doanh nghiệp:</label>
+                                    <label class="control-label">Ngày hết hạn:</label>
                                     <div class="controls">
-                                        <input type="file" name="imageurlcompany">
+                                        <input type="date" placeholder="Ngày hết hạn" name="expirationdate" class="input-xlarge">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Hình ảnh tuyển dụng:</label>
+                                    <div class="controls">
+                                        <input type="file" name="imageurl">
                                     </div>
                                 </div>
                                 <hr>
@@ -121,7 +147,6 @@
                                                             value="Đăng ký doanh nghiệp"></div>
                             </fieldset>
                     </form>
-                    <button type="button" class="btn btn-lg btn-primary mt-2"><a href="employmentinformation">Đăng ký tuyển dụng</a></button>
                 </div>
         </div>
     </section>

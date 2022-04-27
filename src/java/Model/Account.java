@@ -21,6 +21,7 @@ public class Account {
 
     public static final String admin = "admin";
     public static final String userc = "usercompany";
+    public static final String user = "user";
     private int id;
     private String username;
     private String password;
@@ -43,7 +44,5 @@ public class Account {
         this.phone = phone;
         this.role = role;
     }
-    
-    
 
 }

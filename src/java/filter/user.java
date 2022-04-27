@@ -4,7 +4,6 @@
  */
 package filter;
 
-import Model.Account;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -16,31 +15,28 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-@WebFilter(filterName = "AuthorizationFilter", urlPatterns = {"/listCompany", "/listAccount","/listCompany","/listJob","/admin/*"})
-public class AuthorizationFilter implements Filter {
-
+@WebFilter(filterName = "user", urlPatterns = {"/*"})
+public class user implements Filter {
+    
     private static final boolean debug = true;
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-
-    public AuthorizationFilter() {
-    }
-
+    
+    public user() {
+    }    
+    
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AuthorizationFilter:DoBeforeProcessing");
+            log("user:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -63,12 +59,12 @@ public class AuthorizationFilter implements Filter {
 	    log(buf.toString());
 	}
          */
-    }
-
+    }    
+    
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AuthorizationFilter:DoAfterProcessing");
+            log("user:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -102,16 +98,37 @@ public class AuthorizationFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-        HttpSession session = req.getSession();
-        //Kiểm tra đăng nhập
-        Account account = (Account) session.getAttribute("account");
-        if (account != null && account.getRole().equals(Account.admin)) {
-            chain.doFilter(request, response);
-            return;
+        
+        if (debug) {
+            log("user:doFilter()");
         }
-        req.getRequestDispatcher("homeServlet").forward(request, response);
+        
+        doBeforeProcessing(request, response);
+        
+        Throwable problem = null;
+        try {
+            chain.doFilter(request, response);
+        } catch (Throwable t) {
+            // If an exception is thrown somewhere down the filter chain,
+            // we still want to execute our after processing, and then
+            // rethrow the problem after that.
+            problem = t;
+            t.printStackTrace();
+        }
+        
+        doAfterProcessing(request, response);
+
+        // If there was a problem, we want to rethrow it if it is
+        // a known type, otherwise log it.
+        if (problem != null) {
+            if (problem instanceof ServletException) {
+                throw (ServletException) problem;
+            }
+            if (problem instanceof IOException) {
+                throw (IOException) problem;
+            }
+            sendProcessingError(problem, response);
+        }
     }
 
     /**
@@ -133,17 +150,17 @@ public class AuthorizationFilter implements Filter {
     /**
      * Destroy method for this filter
      */
-    public void destroy() {
+    public void destroy() {        
     }
 
     /**
      * Init method for this filter
      */
-    public void init(FilterConfig filterConfig) {
+    public void init(FilterConfig filterConfig) {        
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
-            if (debug) {
-                log("AuthorizationFilter:Initializing filter");
+            if (debug) {                
+                log("user:Initializing filter");
             }
         }
     }
@@ -154,27 +171,27 @@ public class AuthorizationFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("AuthorizationFilter()");
+            return ("user()");
         }
-        StringBuffer sb = new StringBuffer("AuthorizationFilter(");
+        StringBuffer sb = new StringBuffer("user(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
     }
-
+    
     private void sendProcessingError(Throwable t, ServletResponse response) {
-        String stackTrace = getStackTrace(t);
-
+        String stackTrace = getStackTrace(t);        
+        
         if (stackTrace != null && !stackTrace.equals("")) {
             try {
                 response.setContentType("text/html");
                 PrintStream ps = new PrintStream(response.getOutputStream());
-                PrintWriter pw = new PrintWriter(ps);
+                PrintWriter pw = new PrintWriter(ps);                
                 pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); //NOI18N
 
                 // PENDING! Localize this for next official release
-                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");
-                pw.print(stackTrace);
+                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");                
+                pw.print(stackTrace);                
                 pw.print("</pre></body>\n</html>"); //NOI18N
                 pw.close();
                 ps.close();
@@ -191,7 +208,7 @@ public class AuthorizationFilter implements Filter {
             }
         }
     }
-
+    
     public static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
@@ -205,9 +222,9 @@ public class AuthorizationFilter implements Filter {
         }
         return stackTrace;
     }
-
+    
     public void log(String msg) {
-        filterConfig.getServletContext().log(msg);
+        filterConfig.getServletContext().log(msg);        
     }
-
+    
 }

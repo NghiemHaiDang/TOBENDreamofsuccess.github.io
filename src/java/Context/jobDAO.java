@@ -197,4 +197,78 @@ public class jobDAO extends BaseDAO<Job> {
     public ArrayList<Job> getAllAccount() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    public Job getJob(String id) {
+        try {
+            String sql = "select *from job where id = ? ";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Job job = new Job();
+                job.setId(rs.getInt("id"));
+                job.setJob_name(rs.getString("company_name"));
+                job.setDescription(rs.getString("description"));
+                job.setSalary(rs.getString("salary"));
+                job.setCategoryid(rs.getInt("categoryid"));
+                job.setCompanyid(rs.getInt("companyid"));
+                job.setRecruitmentdate(rs.getDate("recruitmentdate"));
+                job.setExpirationdate(rs.getDate("expirationdate"));
+                job.setImageurl(rs.getString("imageurl"));
+                return job;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(jobDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void updateJob(Job job) {
+        try {
+            String sql = "update job set job_name = ?, description = ? ,salary = ?,categoryid = ?, companyid = ?,recruitmentdate = ?, expirationdate = ?, imageurl = ? where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, job.getJob_name());
+            statement.setString(2, job.getDescription());
+            statement.setString(3, job.getSalary());
+            statement.setInt(4, job.getCategoryid());
+            statement.setInt(5, job.getCompanyid());
+            statement.setDate(6, job.getRecruitmentdate());
+            statement.setDate(7, job.getExpirationdate());
+            statement.setString(8, job.getImageurl());
+            statement.setInt(6, job.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(jobDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deleteJob(String id) {
+        try {
+            String sql = "delete job where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(companyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void insertJob(Job job) {
+        try {
+            String sql = "insert into job (job_name, description, salary, categoryid, companyid, recruitmentdate, expirationdate, imageurl) values (?,?,?,?,?,?,?,?);";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, job.getJob_name());
+            statement.setString(2, job.getDescription());
+            statement.setString(3, job.getSalary());
+            statement.setInt(4, job.getCategoryid());
+            statement.setInt(5, job.getCompanyid());
+            statement.setDate(6, job.getRecruitmentdate());
+            statement.setDate(7, job.getExpirationdate());
+            statement.setString(8, job.getImageurl());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(companyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

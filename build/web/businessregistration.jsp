@@ -36,15 +36,15 @@
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkoutServlet">Checkout</a></li>
-                            <c:choose>
-                                <c:when test="${sessionScope.account != null}">
+                                <c:choose>
+                                    <c:when test="${sessionScope.account != null}">
                                     <li>${sessionScope.account.displayname}</li>
                                     <li><a href="logoutServlet">Đăng xuất</a></li>
-                                </c:when>
-                                <c:otherwise>
+                                    </c:when>
+                                    <c:otherwise>
                                     <li><a href="loginServlet">Đăng nhập</a></li>
-                                </c:otherwise>
-                            </c:choose>
+                                    </c:otherwise>
+                                </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -58,10 +58,10 @@
                         <ul>
                             <li><a href="homeServlet">Trang chủ</a></li>
                             <li><a href="productjobServlet">Tuyển dụng</a></li>
-                            <li><a href="#">Tính chất công việc</a></li>
                             <li><a href="businessregistrationServlet">Đăng ký tuyển dụng</a></li>
                             <li><a href="listAccount">Danh sách tài khoản</a></li>
-                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="listCompany">Danh sách doanh nghiệp</a></li>
+                            <li><a href="listJob">Danh sách việc làm</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -121,6 +121,7 @@
                                                             value="Đăng ký doanh nghiệp"></div>
                             </fieldset>
                     </form>
+                    <button type="button" class="btn btn-lg btn-primary mt-2"><a href="employmentinformation">Đăng ký tuyển dụng</a></button>
                 </div>
         </div>
     </section>

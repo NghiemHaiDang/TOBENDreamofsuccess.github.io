@@ -85,9 +85,11 @@
                     <nav id="menu" class="pull-right">
                         <ul>
                             <li><a href="productjobServlet">Tuyển dụng</a></li>															
-                            <li><a href="#">Tính chất công việc</a></li>			
+
                             <li><a href="businessregistrationServlet">Đăng ký tuyển dụng</a></li>						
-                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="listAccount">Danh sách tài khoản</a></li>
+                            <li><a href="listCompany">Danh sách doanh nghiệp</a></li>
+                            <li><a href="listJob">Danh sách việc làm</a></li>
                         </ul>
                     </nav>
                 </div>

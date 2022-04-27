@@ -4,6 +4,7 @@
  */
 package Context;
 
+import Model.Account;
 import Model.Category;
 import Model.Company;
 import java.sql.Date;
@@ -86,6 +87,56 @@ public class companyDAO extends BaseDAO<Company> {
     @Override
     public ArrayList<Company> getAllAccount() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void deleteCompany(String id) {
+        try {
+            String sql = "delete company where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(companyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Company getCompany(String id) {
+        try {
+            String sql = "select *from company where id = ? ";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Company company = new Company();
+                company.setId(rs.getInt("id"));
+                company.setCompany_name(rs.getString("company_name"));
+                company.setAddress(rs.getString("address"));
+                company.setCeo(rs.getString("ceo"));
+                company.setPhonecompany(rs.getString("phonecompany"));
+                company.setImageurlcompany(rs.getString("imageurlcompany"));
+                return company;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(companyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void updateCompany(Company company) {
+        try {
+            String sql = "update company set company_name = ?, address = ? ,ceo = ?, phonecompany = ?, imageurlcompany = ? where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, company.getCompany_name());
+            statement.setString(2, company.getAddress());
+            statement.setString(3, company.getCeo());
+            statement.setString(4, company.getPhonecompany());
+            statement.setString(5, company.getImageurlcompany());
+            statement.setInt(6, company.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(companyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

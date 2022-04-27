@@ -37,15 +37,15 @@
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkoutServlet">Checkout</a></li>
-                            <c:choose>
-                                <c:when test="${sessionScope.account != null}">
+                                <c:choose>
+                                    <c:when test="${sessionScope.account != null}">
                                     <li>${sessionScope.account.displayname}</li>
                                     <li><a href="logoutServlet">Đăng xuất</a></li>
-                                </c:when>
-                                <c:otherwise>
+                                    </c:when>
+                                    <c:otherwise>
                                     <li><a href="loginServlet">Đăng nhập</a></li>
-                                </c:otherwise>
-                            </c:choose>
+                                    </c:otherwise>
+                                </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -71,6 +71,12 @@
                         <h4 class="title"><span class="text"><strong>thông tin</strong> </span></h4>
                         <form action="updateAccount" method="POST" class="form-stacked">
                             <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label">Tên đăng nhập:</label>
+                                    <div class="controls">
+                                        <input type="hidden" placeholder="Tên đăng nhập của bạn" value="${account.id}" name="idup" class="input-xlarge">
+                                    </div>
+                                </div>
                                 <div class="control-group">
                                     <label class="control-label">Tên đăng nhập:</label>
                                     <div class="controls">

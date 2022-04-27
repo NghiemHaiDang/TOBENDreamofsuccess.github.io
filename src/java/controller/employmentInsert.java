@@ -4,20 +4,26 @@
  */
 package controller;
 
-import Context.accountDAO;
-import Model.Account;
+import Context.categoryDAO;
+import Context.companyDAO;
+import Context.jobDAO;
+import Model.Category;
+import Model.Company;
+import Model.Job;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class updateAccount extends HttpServlet {
+public class employmentInsert extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,6 +37,36 @@ public class updateAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+ 
+            String job_name = request.getParameter("jobname");
+            String description = request.getParameter("description");
+            String salary = request.getParameter("salary");
+            String category_name = request.getParameter("category");
+            String company_name = request.getParameter("company");
+            Date recruitmentdate = Date.valueOf(request.getParameter("recruitmentdate"));
+            Date expirationdate = Date.valueOf(request.getParameter("dexpirationdate"));
+            String imageurl = request.getParameter("imageurl");
+            jobDAO jobdao = new jobDAO();
+            categoryDAO ctDao = new categoryDAO();
+            companyDAO cpDao = new companyDAO();
+            int category_id = 0;
+            int company_id = 0;
+            ArrayList<Category> listCategory = ctDao.getAllCategory();
+            ArrayList<Company> listCompany = cpDao.getAllCompany();
+            for (Company company : listCompany) {
+                if(company.getCompany_name().equals(company_name)){
+                    company_id = company.getId();
+                }
+            }
+            for (Category category : listCategory) {
+                if(category.getCt_name().equals(category_name)){
+                    category_id = category.getId();
+                }
+            }
+            Job job = new Job(job_name, description, salary, category_id, company_id, recruitmentdate, expirationdate, imageurl);
+            jobdao.insertJob(job);
+            request.getRequestDispatcher("employmentinformation.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -45,13 +81,7 @@ public class updateAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        String idUpdate = request.getParameter("updateId");
-        Account account = new Account();
-        accountDAO dao = new accountDAO();
-        account = dao.getAccount(idUpdate);
-        request.setAttribute("account", account);
-        request.getRequestDispatcher("updateAccount.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -65,21 +95,7 @@ public class updateAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        String id = request.getParameter("idup");
-        int id1 = Integer.parseInt(id);
-        String usname = request.getParameter("usname");
-        String pass = request.getParameter("pass");
-        String displayname = request.getParameter("displayname");
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String role = request.getParameter("role");
-        accountDAO dao = new accountDAO();
-        Account account = new Account(id1, usname, pass, displayname, address, email, phone, role);
-        dao.updateAccount(account);
-        response.sendRedirect("listAccount");
-
+        processRequest(request, response);
     }
 
     /**

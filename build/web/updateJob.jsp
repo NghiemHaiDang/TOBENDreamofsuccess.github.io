@@ -1,6 +1,6 @@
 <%-- 
-    Document   : updateAccount
-    Created on : Apr 27, 2022, 3:52:10 AM
+    Document   : updateJob
+    Created on : Apr 28, 2022, 1:50:08 AM
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -37,15 +37,15 @@
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkoutServlet">Checkout</a></li>
-                                <c:choose>
-                                    <c:when test="${sessionScope.account != null}">
+                            <c:choose>
+                                <c:when test="${sessionScope.account != null}">
                                     <li>${sessionScope.account.displayname}</li>
                                     <li><a href="logoutServlet">Đăng xuất</a></li>
-                                    </c:when>
-                                    <c:otherwise>
+                                </c:when>
+                                <c:otherwise>
                                     <li><a href="loginServlet">Đăng nhập</a></li>
-                                    </c:otherwise>
-                                </c:choose>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
             </section>			
             <section class="header_text sub">
                 <img class="pageBanner" style="height: 300px;" src="Jobpictures/slide3.jpg" alt="New products" >
-                <h4><span>Cập nhật thông tin tài khoản</span></h4>
+                <h4><span>Cập nhật thông tin việc làm</span></h4>
             </section>			
             <section class="main-content">				
                 <div class="row">
@@ -69,60 +69,59 @@
                     </div>
                     <div class="span7">					
                         <h4 class="title"><span class="text"><strong>thông tin</strong> </span></h4>
-                        <form action="updateAccount" method="POST" class="form-stacked">
+                        <form action="updateJob" method="POST" class="form-stacked">
                             <fieldset>
                                 <div class="control-group">
-                                    <label class="control-label">Tên đăng nhập:</label>
                                     <div class="controls">
-                                        <input type="hidden" placeholder="Tên đăng nhập của bạn" value="${account.id}" name="idup" class="input-xlarge">
+                                        <input type="hidden" value="${job.id}" name="idup" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Tên đăng nhập:</label>
+                                    <label class="control-label">Tên công việc:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Tên đăng nhập của bạn" value="${account.username}" name="usname" class="input-xlarge">
+                                        <input type="text" placeholder="Tên công việc" value="${job.job_name}" name="jobname" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Tên hiển thị:</label>
+                                    <label class="control-label">Mô tả công việc:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Tên hiển thị" value="${account.displayname}" name="displayname" class="input-xlarge">
+                                        <input type="text" placeholder="Mô tả công việc" value="${job.description}" name="description" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Địa chỉ email:</label>
+                                    <label class="control-label">Mức lương:</label>
                                     <div class="controls">
-                                        <input type="email" placeholder="Email của bạn" value="${account.email}"  name="email" class="input-xlarge">
+                                        <input type="text" placeholder="Mức lương" value="${job.salary}"  name="salary" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Mậu khẩu:</label>
+                                    <label class="control-label">Ngày tuyển dụng:</label>
                                     <div class="controls">
-                                        <input type="password" placeholder="Nhập mật khẩu" value="${account.password}" name="pass" class="input-xlarge">
+                                        <input type="date" value="${job.recruitmentdate}" name="recruitmentdate" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Địa chỉ:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Địa chỉ" value="${account.address}" name="address" class="input-xlarge">
+                                        <input type="hidden" value="${job.categoryid}" name="categoryid" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Số điện thoại:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Số điện thoại" value="${account.phone}" name="phone" class="input-xlarge">
+                                        <input type="hidden" value="${job.companyid}" name="companyid" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Vai trò:</label>
+                                    <label class="control-label">Ngày hết hạn:</label>
                                     <div class="controls">
-                                        <select name="role">
-                                            <option value="${account.role}">${account.role}</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="usercompany">Người tuyển dụng</option>
-                                            <option value="user">Người ứng tuyển</option>
-                                        </select>
+                                        <input type="date" value="${job.expirationdate}" name="expirationdate" class="input-xlarge">
                                     </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Hình ảnh:</label>
+                                    <div class="controls">
+                                        <input type="image" placeholder="Hình ảnh" value="${job.imageurl}" name="imageurl" class="input-xlarge">
+                                    </div>
+                                </div>
                                 </div>
                                 <hr>
                                 <div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Cập nhật"></div>

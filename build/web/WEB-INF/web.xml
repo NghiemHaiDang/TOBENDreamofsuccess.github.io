@@ -80,6 +80,38 @@
         <servlet-name>updateAccount</servlet-name>
         <servlet-class>controller.updateAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>listCompany</servlet-name>
+        <servlet-class>controller.listCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteCompany</servlet-name>
+        <servlet-class>controller.deleteCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateCompany</servlet-name>
+        <servlet-class>controller.updateCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listJob</servlet-name>
+        <servlet-class>controller.listJob</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateJob</servlet-name>
+        <servlet-class>controller.updateJob</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteJob</servlet-name>
+        <servlet-class>controller.deleteJob</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>employmentinformation</servlet-name>
+        <servlet-class>controller.employmentinformation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>employmentInsert</servlet-name>
+        <servlet-class>controller.employmentInsert</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
@@ -167,6 +199,38 @@
     <servlet-mapping>
         <servlet-name>updateAccount</servlet-name>
         <url-pattern>/updateAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listCompany</servlet-name>
+        <url-pattern>/listCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteCompany</servlet-name>
+        <url-pattern>/deleteCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateCompany</servlet-name>
+        <url-pattern>/updateCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listJob</servlet-name>
+        <url-pattern>/listJob</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateJob</servlet-name>
+        <url-pattern>/updateJob</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteJob</servlet-name>
+        <url-pattern>/deleteJob</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>employmentinformation</servlet-name>
+        <url-pattern>/employmentinformation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>employmentInsert</servlet-name>
+        <url-pattern>/employmentInsert</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

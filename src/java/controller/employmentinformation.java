@@ -4,20 +4,23 @@
  */
 package controller;
 
-import Context.accountDAO;
-import Model.Account;
+import Context.categoryDAO;
+import Context.companyDAO;
+import Model.Category;
+import Model.Company;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class updateAccount extends HttpServlet {
+public class employmentinformation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,6 +34,15 @@ public class updateAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            categoryDAO ctDao = new categoryDAO();
+            companyDAO cpDao = new companyDAO();
+            ArrayList<Category> listCategory = ctDao.getAllCategory();
+            ArrayList<Company> listCompany = cpDao.getAllCompany();
+            request.setAttribute("listCategory", listCategory);
+            request.setAttribute("listCompany", listCompany);
+            request.getRequestDispatcher("employmentinformation.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -45,13 +57,7 @@ public class updateAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        String idUpdate = request.getParameter("updateId");
-        Account account = new Account();
-        accountDAO dao = new accountDAO();
-        account = dao.getAccount(idUpdate);
-        request.setAttribute("account", account);
-        request.getRequestDispatcher("updateAccount.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -65,21 +71,7 @@ public class updateAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        String id = request.getParameter("idup");
-        int id1 = Integer.parseInt(id);
-        String usname = request.getParameter("usname");
-        String pass = request.getParameter("pass");
-        String displayname = request.getParameter("displayname");
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String role = request.getParameter("role");
-        accountDAO dao = new accountDAO();
-        Account account = new Account(id1, usname, pass, displayname, address, email, phone, role);
-        dao.updateAccount(account);
-        response.sendRedirect("listAccount");
-
+        processRequest(request, response);
     }
 
     /**

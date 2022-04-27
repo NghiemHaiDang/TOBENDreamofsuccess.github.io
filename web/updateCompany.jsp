@@ -1,9 +1,9 @@
 <%-- 
-    Document   : updateAccount
-    Created on : Apr 27, 2022, 3:52:10 AM
+    Document   : updateCompany
+    Created on : Apr 28, 2022, 12:55:38 AM
     Author     : Admin
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,6 +23,7 @@
         <script src="themes/js/jquery.scrolltotop.js"></script>
     </head>
     <body>
+    <body>
         <div id="top-bar" class="container">
             <div class="row">
                 <div class="span4">
@@ -37,15 +38,15 @@
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkoutServlet">Checkout</a></li>
-                                <c:choose>
-                                    <c:when test="${sessionScope.account != null}">
+                            <c:choose>
+                                <c:when test="${sessionScope.account != null}">
                                     <li>${sessionScope.account.displayname}</li>
                                     <li><a href="logoutServlet">Đăng xuất</a></li>
-                                    </c:when>
-                                    <c:otherwise>
+                                </c:when>
+                                <c:otherwise>
                                     <li><a href="loginServlet">Đăng nhập</a></li>
-                                    </c:otherwise>
-                                </c:choose>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -69,60 +70,43 @@
                     </div>
                     <div class="span7">					
                         <h4 class="title"><span class="text"><strong>thông tin</strong> </span></h4>
-                        <form action="updateAccount" method="POST" class="form-stacked">
+                        <form action="updateCompany" method="POST" class="form-stacked">
                             <fieldset>
                                 <div class="control-group">
-                                    <label class="control-label">Tên đăng nhập:</label>
                                     <div class="controls">
-                                        <input type="hidden" placeholder="Tên đăng nhập của bạn" value="${account.id}" name="idup" class="input-xlarge">
+                                        <input type="hidden" placeholder="" value="${company.id}" name="idup" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Tên đăng nhập:</label>
+                                    <label class="control-label">Tên doanh nghiệp:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Tên đăng nhập của bạn" value="${account.username}" name="usname" class="input-xlarge">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Tên hiển thị:</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Tên hiển thị" value="${account.displayname}" name="displayname" class="input-xlarge">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Địa chỉ email:</label>
-                                    <div class="controls">
-                                        <input type="email" placeholder="Email của bạn" value="${account.email}"  name="email" class="input-xlarge">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Mậu khẩu:</label>
-                                    <div class="controls">
-                                        <input type="password" placeholder="Nhập mật khẩu" value="${account.password}" name="pass" class="input-xlarge">
+                                        <input type="text" placeholder="Tên doanh nghiệp" value="${company.company_name}" name="companyname" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Địa chỉ:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Địa chỉ" value="${account.address}" name="address" class="input-xlarge">
+                                        <input type="text" placeholder="Địa chỉ" value="${company.address}" name="address" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Số điện thoại:</label>
+                                    <label class="control-label">Giám đốc:</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Số điện thoại" value="${account.phone}" name="phone" class="input-xlarge">
+                                        <input type="text" placeholder="Giám đốc" value="${company.ceo}"  name="ceo" class="input-xlarge">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Vai trò:</label>
+                                    <label class="control-label">Điện thoại doanh nghiệp:</label>
                                     <div class="controls">
-                                        <select name="role">
-                                            <option value="${account.role}">${account.role}</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="usercompany">Người tuyển dụng</option>
-                                            <option value="user">Người ứng tuyển</option>
-                                        </select>
+                                        <input type="text" placeholder="Số điện thoại" value="${company.phonecompany}" name="phonecompany" class="input-xlarge">
                                     </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Hình ảnh doanh nghiệp:</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Hình ảnh doanh nghiệp" value="${company.imageurlcompany}" name="imgcompany" class="input-xlarge">
+                                    </div>
+                                </div>
                                 </div>
                                 <hr>
                                 <div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Cập nhật"></div>
@@ -167,4 +151,5 @@
             });
         </script>		
     </body>
+</body>
 </html>
