@@ -26,7 +26,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/productjobServlet", "/cartServlet", "/checkoutServlet", "/productjobServlet","/listAccount","/admin/*"})
+@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/productjobServlet", "/cartServlet", "/checkoutServlet", "/productjobServlet","/listAccount","/businessregistrationServlet","/admin/*","/usercompany/*"})
 public class AuthenticationFilter implements Filter {
 
     private static final boolean debug = true;

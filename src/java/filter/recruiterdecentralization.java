@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebFilter(filterName = "recruiterdecentralization", urlPatterns = {"/businessregistration"})
+@WebFilter(filterName = "recruiterdecentralization", urlPatterns = {"/businessregistrationServlet","/usercompany/*"})
 public class recruiterdecentralization implements Filter {
 
     private static final boolean debug = true;
@@ -108,11 +108,11 @@ public class recruiterdecentralization implements Filter {
         HttpSession session = req.getSession();
         //Kiểm tra đăng nhập
         Account account = (Account) session.getAttribute("account");
-        if (account != null && account.getRole().equals(Account.usercompany)) {
+        if (account != null && account.getRole().equals(Account.userc)) {
             chain.doFilter(request, response);
             return;
         }
-        req.getRequestDispatcher("businessregistration.jsp").forward(request, response);
+        req.getRequestDispatcher("homeServlet").forward(request, response);
     }
 
     /**
