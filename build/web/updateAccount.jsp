@@ -3,7 +3,7 @@
     Created on : Apr 27, 2022, 3:52:10 AM
     Author     : Admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,10 +34,18 @@
                     <div class="account pull-right">
                         <ul class="user-menu">
                             <li><a href="homeServlet">Trang chủ</a></li>
-                            <li><a href="loginServlet">Tài khoản của tôi</a></li>
-                            <li><a href="loginServlet">Thông tin ứng tuyển</a></li>
-                            <li><a href="loginServlet">Checkout</a></li>					
-                            <li><a href="loginServlet">Đăng nhập</a></li>		
+                            <li><a href="#">Tài khoản của tôi</a></li>
+                            <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
+                            <li><a href="checkoutServlet">Checkout</a></li>
+                            <c:choose>
+                                <c:when test="${sessionScope.account != null}">
+                                    <li>${sessionScope.account.displayname}</li>
+                                    <li><a href="logoutServlet">Đăng xuất</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="loginServlet">Đăng nhập</a></li>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -57,7 +65,7 @@
                 <div class="row">
                     <div class="span5">					
                         <h4 class="title"><span class="text"><strong>Cập nhật</strong> </span></h4>
-                  			
+
                     </div>
                     <div class="span7">					
                         <h4 class="title"><span class="text"><strong>thông tin</strong> </span></h4>

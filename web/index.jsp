@@ -72,8 +72,8 @@
                                     <%}%>
                                 </ul>
                             </li>							
-                            <li><a href="#">Về chúng tôi</a></li>
-                            <li><a href="listAccount">Danh sách ứng viên</a></li>
+                            <li><a href="businessregistrationServlet">Đăng ký tuyển dụng</a></li>
+                            <li><a href="listAccount">Danh sách tài khoản</a></li>
                             <li><a href="#">Liên hệ</a></li>
                         </ul>
                     </nav>

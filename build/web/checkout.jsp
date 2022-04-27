@@ -60,10 +60,10 @@
                 <div class="span8">
                     <div class="account pull-right">
                         <ul class="user-menu">
-                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="homeServlet">Trang chủ</a></li>
                             <li><a href="#">Tài khoản của tôi</a></li>
-                            <li><a href="cart.html">Thông tin ứng tuyển</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
+                            <li><a href="checkoutServlet">Checkout</a></li>
                                 <c:choose>
                                     <c:when test="${sessionScope.account != null}">
                                     <li>${sessionScope.account.displayname}</li>
@@ -81,13 +81,13 @@
         <div id="wrapper" class="container">
             <section class="navbar main-menu">
                 <div class="navbar-inner main-menu">				
-                    <a href="index.html" class="local logo pull-left">TOBEN - Dream Of Success</a>
+                    <a href="homeServlet" class="local logo pull-left">TOBEN - Dream Of Success</a>
                     <nav id="menu" class="pull-right">
                         <ul>
                             <li><a href="productjobServlet">Tuyển dụng</a></li>															
-                            <li><a href="./products.html">Tính chất công việc</a></li>			
-                            <li><a href="./products.html">Về chúng tôi</a></li>							
-                            <li><a href="./products.html">Sự kiện</a></li>
+                            <li><a href="#">Tính chất công việc</a></li>			
+                            <li><a href="businessregistrationServlet">Đăng ký tuyển dụng</a></li>						
+                            <li><a href="#">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -107,8 +107,8 @@
                                             <!-- Set columns width -->
                                             <th class="text-center py-3 px-4" style="min-width: 400px;">Thông tin ứng tuyển</th>
                                             <th class="text-right py-3 px-4" style="width: 100px;">Mức lương</th>
-                                            <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
-                                            <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
+                                            <th class="text-center py-3 px-4" style="width: 120px;">Ngày tuyển dụng</th>
+                                            <th class="text-right py-3 px-4" style="width: 100px;">Ngày hết hạn</th>
                                             <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
                                         </tr>
                                     </thead>
@@ -124,7 +124,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.salary}</td>
-                                                <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>
+                                                <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.recruitmentdate}</td>
                                                 <td class="text-right font-weight-semibold align-middle p-4">${C.value.job.expirationdate}</td>
                                                 <td class="text-center align-middle px-0"><a href="deleteCartServlet?jobId=${C.value.job.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
                                             </tr>
@@ -139,26 +139,12 @@
                                         <div class="accordion" id="accordion2">
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
-                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Checkout Options</a>
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Thông tin</a>
                                                 </div>
                                                 <div id="collapseOne" class="accordion-body in collapse">
                                                     <div class="accordion-inner">
                                                         <div class="row-fluid">
                                                             <div class="span6">
-                                                                <h4>New Customer</h4>
-                                                                <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
-                                                                <form action="#" method="post">
-                                                                    <fieldset>
-                                                                        <label class="radio" for="register">
-                                                                            <input type="radio" name="account" value="register" id="register" checked="checked">Register Account
-                                                                        </label>
-                                                                        <label class="radio" for="guest">
-                                                                            <input type="radio" name="account" value="guest" id="guest">Guest Checkout
-                                                                        </label>
-                                                                        <br>
-                                                                        <button class="btn btn-inverse" data-toggle="collapse" data-parent="#collapse2">Continue</button>
-                                                                    </fieldset>
-                                                                </form>
                                                             </div>
                                                             <div class="span6">
                                                                 <h4>Thông tin người ứng tuyển</h4>
@@ -198,129 +184,18 @@
                                             </div>
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
-                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Account &amp; Billing Details</a>
+
                                                 </div>
                                                 <div id="collapseTwo" class="accordion-body collapse">
-                                                    <div class="accordion-inner">
-                                                        <div class="row-fluid">
-                                                            <div class="span6">
-                                                                <h4>Your Personal Details</h4>
-                                                                <div class="control-group">
-                                                                    <label class="control-label">First Name</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label">Last Name</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>					  
-                                                                <div class="control-group">
-                                                                    <label class="control-label">Email Address</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label">Telephone</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label">Fax</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="span6">
-                                                                <h4>Your Address</h4>
-                                                                <div class="control-group">
-                                                                    <label class="control-label">Company</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label">Company ID:</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>					  
-                                                                <div class="control-group">
-                                                                    <label class="control-label"><span class="required">*</span> Address 1:</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label">Address 2:</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label"><span class="required">*</span> City:</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label"><span class="required">*</span> Post Code:</label>
-                                                                    <div class="controls">
-                                                                        <input type="text" placeholder="" class="input-xlarge">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label"><span class="required">*</span> Country:</label>
-                                                                    <div class="controls">
-                                                                        <select class="input-xlarge">
-                                                                            <option value="1">Afghanistan</option>
-                                                                            <option value="2">Albania</option>
-                                                                            <option value="3">Algeria</option>
-                                                                            <option value="4">American Samoa</option>
-                                                                            <option value="5">Andorra</option>
-                                                                            <option value="6">Angola</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label"><span class="required">*</span> Region / State:</label>
-                                                                    <div class="controls">
-                                                                        <select name="zone_id" class="input-xlarge">
-                                                                            <option value=""> --- Please Select --- </option>
-                                                                            <option value="3513">Aberdeen</option>
-                                                                            <option value="3514">Aberdeenshire</option>
-                                                                            <option value="3515">Anglesey</option>
-                                                                            <option value="3516">Angus</option>
-                                                                            <option value="3517">Argyll and Bute</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
-                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Confirm Order</a>
+
                                                 </div>
                                                 <div id="collapseThree" class="accordion-body collapse">
-                                                    <div class="accordion-inner">
-                                                        <div class="row-fluid">
-                                                            <div class="control-group">
-                                                                <label for="textarea" class="control-label">Comments</label>
-                                                                <div class="controls">
-                                                                    <textarea rows="3" id="textarea" class="span12"></textarea>
-                                                                </div>
-                                                            </div>									
-                                                            <button class="btn btn-inverse pull-right">Confirm order</button>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>				

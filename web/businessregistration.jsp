@@ -3,7 +3,7 @@
     Created on : Apr 25, 2022, 1:31:56 AM
     Author     : Admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,9 +34,17 @@
                     <div class="account pull-right">
                         <ul class="user-menu">
                             <li><a href="#">Tài khoản của tôi</a></li>
-                            <li><a href="cart.html">Thông tin ứng tuyển</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="register.html">Đăng nhập</a></li>
+                            <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
+                            <li><a href="checkoutServlet">Checkout</a></li>
+                            <c:choose>
+                                <c:when test="${sessionScope.account != null}">
+                                    <li>${sessionScope.account.displayname}</li>
+                                    <li><a href="logoutServlet">Đăng xuất</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="loginServlet">Đăng nhập</a></li>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -45,14 +53,15 @@
         <div id="wrapper" class="container">
             <section class="navbar main-menu">
                 <div class="navbar-inner main-menu">
-                    <a href="index.html" class="local logo pull-left">TOBEN - Dream Of Success</a>
+                    <a href="homeServlet" class="local logo pull-left">TOBEN - Dream Of Success</a>
                     <nav id="menu" class="pull-right">
                         <ul>
-                            <li><a href="./products.html">Tuyển dụng</a></li>
-                            <li><a href="./products.html">Tính chất công việc</a></li>
-                            <li><a href="./products.html">Về chúng tôi</a></li>
-                            <li><a href="./products.html">Sự kiện</a></li>
-                            <li><a href="./products.html">Liên hệ</a></li>
+                            <li><a href="homeServlet">Trang chủ</a></li>
+                            <li><a href="productjobServlet">Tuyển dụng</a></li>
+                            <li><a href="#">Tính chất công việc</a></li>
+                            <li><a href="businessregistrationServlet">Đăng ký tuyển dụng</a></li>
+                            <li><a href="listAccount">Danh sách tài khoản</a></li>
+                            <li><a href="#">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
