@@ -112,6 +112,10 @@
         <servlet-name>employmentInsert</servlet-name>
         <servlet-class>controller.employmentInsert</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editAccount</servlet-name>
+        <servlet-class>controller.editAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
         <url-pattern>/homeServlet</url-pattern>
@@ -231,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>employmentInsert</servlet-name>
         <url-pattern>/employmentInsert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editAccount</servlet-name>
+        <url-pattern>/editAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

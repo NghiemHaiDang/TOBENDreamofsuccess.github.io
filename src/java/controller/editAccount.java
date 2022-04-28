@@ -4,18 +4,15 @@
  */
 package controller;
 
-import Context.categoryDAO;
-import Context.companyDAO;
-import Context.jobDAO;
-import Model.Category;
-import Model.Company;
-import Model.Job;
+import Context.accountDAO;
+import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +20,7 @@ import java.util.List;
  *
  * @author Admin
  */
-public class homeServlet extends HttpServlet {
+public class editAccount extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,17 +34,25 @@ public class homeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        categoryDAO ctDao = new categoryDAO();
-        companyDAO cpDao = new companyDAO();
-        jobDAO jobDao = new jobDAO();
-        ArrayList<Category> listCategory = ctDao.getAllCategory();
-        ArrayList<Company> listCompany = cpDao.getAllCompany();
-        ArrayList<Job> listJob = jobDao.getAllJob();
-        request.setAttribute("listCategory", listCategory);
-        int sizeList = jobDao.getTotalJobs();
-        request.setAttribute("listCompany", listCompany);
-        request.setAttribute("listJob", listJob.subList(3, 7));
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
+            Account account = (Account) session.getAttribute("account");
+            accountDAO acDao = new accountDAO();
+            List<Account> list = new ArrayList<>();
+            list = acDao.getAllAccount();
+            int idAccount = 0;
+            for (Account a : list) {
+                if (a.getUsername().equals(account.getUsername())) {
+                    idAccount = a.getId();
+                }
+            }
+            String ida = String.valueOf(idAccount);
+            Account acc = new Account();
+            acc = acDao.getAccount(ida);
+            request.setAttribute("acc", acc);
+            request.getRequestDispatcher("editAccount.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,7 +81,20 @@ public class homeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        String id = request.getParameter("idup");
+        int id1 = Integer.parseInt(id);
+        String usname = request.getParameter("usname");
+        String pass = request.getParameter("pass");
+        String displayname = request.getParameter("displayname");
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String role = request.getParameter("role");
+        accountDAO dao = new accountDAO();
+        Account account = new Account(id1, usname, pass, displayname, address, email, phone, role);
+        dao.updateAccount(account);
+        response.sendRedirect("editAccount");
     }
 
     /**

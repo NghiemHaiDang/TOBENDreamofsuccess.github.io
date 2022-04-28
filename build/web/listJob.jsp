@@ -87,7 +87,6 @@
 
                             <li><a href="businessregistrationServlet">Đăng ký tuyển dụng</a></li>						
                             <li><a href="listAccount">Danh sách tài khoản</a></li>
-                            <li><a href="listAccount">Danh sách tài khoản</a></li>
                             <li><a href="listCompany">Danh sách doanh nghiệp</a></li>
                             <li><a href="listJob">Danh sách việc làm</a></li>
                         </ul>
@@ -134,7 +133,7 @@
                                                 <td class="text-right font-weight-semibold align-middle p-4">
                                                     <button><a><a href="updateJob?updateId=${C.id}">Update</a></button>
                                                 </td>
-                                                <td class="text-center align-middle px-0"><a href="deleteJob?deleteId=${C.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                                                <td class="text-center align-middle px-0"><a href="deleteJob?deleteId=${C.id}" class="shop-tooltip close float-none text-danger" onclick="return confirm('Bạn có đồng ý xoá doanh nghiệp này?') title="" data-original-title="Remove">×</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

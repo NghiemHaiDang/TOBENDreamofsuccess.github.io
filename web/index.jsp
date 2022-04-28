@@ -37,7 +37,7 @@
                 <div class="span8">
                     <div class="account pull-right">
                         <ul class="user-menu">				
-                            <li><a href="#">Tài khoản của tôi</a></li>
+                            <li><a href="editAccount">Tài khoản của tôi</a></li>
                             <li><a href="cartServlet">Thông tin ứng tuyển</a></li>
                             <li><a href="checkoutServlet">Checkout</a></li>
                                 <c:choose>
@@ -115,7 +115,7 @@
                                             <ul class="thumbnails">
                                                 <c:forEach items="${listJob}" var="listjob">
                                                     <li class="span3">
-                                                        <div class="product-box">
+                                                        <div style="height: 200px;" class="product-box">
                                                             <span class="sale_tag"></span>
                                                             <p><a href="loginServlet"><img src="${listjob.imageurl}" alt="" /></a></p>
                                                             <a href="loginServlet" class="title">${listjob.job_name}</a><br/>

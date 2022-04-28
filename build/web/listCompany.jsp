@@ -128,7 +128,7 @@
                                                 <td class="text-right font-weight-semibold align-middle p-4">
                                                     <button><a><a href="updateCompany?updateId=${C.id}">Update</a></button>
                                                 </td>
-                                                <td class="text-center align-middle px-0"><a href="deleteCompany?deleteId=${C.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                                                <td class="text-center align-middle px-0"><a href="deleteCompany?deleteId=${C.id}" class="shop-tooltip close float-none text-danger" onclick="return confirm('Bạn có đồng ý xoá doanh nghiệp này?') title="" data-original-title="Remove">×</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
